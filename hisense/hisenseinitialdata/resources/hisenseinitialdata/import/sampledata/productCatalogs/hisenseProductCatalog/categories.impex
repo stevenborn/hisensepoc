@@ -1,0 +1,70 @@
+# -----------------------------------------------------------------------
+# Copyright (c) 2019 SAP SE or an SAP affiliate company. All rights reserved.
+# -----------------------------------------------------------------------
+# ImpEx for Importing Categories into hisense Store
+
+# Macros / Replacement Parameter definitions
+$productCatalog=hisenseProductCatalog
+$productCatalogName=hisense Product Catalog
+$catalogVersion=catalogversion(catalog(id[default=$productCatalog]),version[default='Staged'])[unique=true,default=$productCatalog:Staged]
+$supercategories=source(code, $catalogVersion)[unique=true]
+$categories=target(code, $catalogVersion)[unique=true]
+$lang=en
+
+# Insert Categories
+INSERT_UPDATE Category;code[unique=true];allowedPrincipals(uid)[default='customergroup'];$catalogVersion
+;1
+;C01
+;C02
+;C03
+;C04
+;C05
+;C06
+;C07
+;C08
+;C09
+;C10
+;C11
+;C12
+;C13
+;C14
+;C15
+
+
+UPDATE Category;code[unique=true];$catalogVersion;name[lang=$lang]
+;1;;hisenseCategory
+;C01;;TV & ENTERTAINMENT
+;C02;;HOME APPLIANCES
+;C03;;Air Conitioning
+;C04;;Television
+;C05;;Laser
+;C06;;Sound Bars
+;C07;;Fridges
+;C08;;Wine Cabinets
+;C09;;Dishwasher
+;C10;;Laundry
+;C11;;Washers
+;C12;;Dryers
+;C13;;Wall Mounted
+;C14;;Single Split
+;C15;;Multi Split
+
+
+# Insert Category Structure
+INSERT_UPDATE CategoryCategoryRelation;$categories;$supercategories
+;C01;1
+;C02;1
+;C03;1
+;C04;C01
+;C05;C01
+;C06;C01
+;C07;C02
+;C08;C02
+;C09;C02
+;C10;C02
+;C11;C10
+;C12;C10
+;C13;C03
+;C14;C03
+;C15;C03
+

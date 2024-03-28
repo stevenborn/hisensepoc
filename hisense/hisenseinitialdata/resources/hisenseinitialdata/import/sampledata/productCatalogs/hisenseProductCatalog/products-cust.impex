@@ -1,0 +1,150 @@
+# -----------------------------------------------------------------------
+# Copyright (c) 2022 SAP SE or an SAP affiliate company. All rights reserved.
+# -----------------------------------------------------------------------
+# ImpEx for Importing Products into hisense Store
+
+# Macros / Replacement Parameter definitions
+$productCatalog=hisenseProductCatalog
+$productCatalogName=hisense Product Catalog
+$catalogVersion=catalogversion(catalog(id[default=$productCatalog]),version[default='Staged'])[unique=true,default=$productCatalog:Staged]
+$supercategories=supercategories(code, $catalogVersion)
+$baseProduct=baseProduct(code,$catalogVersion)
+$approved=approvalstatus(code)[default='check']
+$lang=en
+
+
+
+
+# Insert Products
+INSERT_UPDATE Product;code[unique=true];$supercategories;manufacturerName;manufacturerAID;unit(code);ean;variantType(code);$catalogVersion;$approved
+;A7KAU;C04;Hisense;Hisense;pieces;
+;UXAU;C04;Hisense;Hisense;pieces;
+
+;PX2-PRO;C05;Hisense;Hisense;pieces;
+;PL1H;C05;Hisense;Hisense;pieces;
+
+;HS2100;C06;Hisense;Hisense;pieces;
+;AX5100G;C06;Hisense;Hisense;pieces;
+
+;HRCD483TBW;C07;Hisense;Hisense;pieces;
+;HRBM417S;C07;Hisense;Hisense;pieces;
+
+;HRBC140;C08;Hisense;Hisense;pieces;
+;HRWC31;C08;Hisense;Hisense;pieces;
+
+;HSGP15FB;C09;Hisense;Hisense;pieces;
+;HSCE14FS;C09;Hisense;Hisense;pieces;
+
+;HWFS1015AB;C11;Hisense;Hisense;pieces;
+;HWFS1015E;C11;Hisense;Hisense;pieces;
+
+;HDFS90HAB;C12;Hisense;Hisense;pieces;
+;HDFY80H;C12;Hisense;Hisense;pieces;
+
+;HAWV9KR;C13;Hisense;Hisense;pieces;
+
+;HAWJ;C14;Hisense;Hisense;pieces;
+
+;AUC;C14;Hisense;Hisense;pieces;
+
+;AMD;C15;Hisense;Hisense;pieces;
+
+
+INSERT_UPDATE VariantProduct;code[unique=true];$catalogVersion;$baseProduct;supercategories(code,$catalogVersion);unit(code)[default='pieces'];;$approved;
+;43A7KAU;;A7KAU;C01;pieces;;;
+;50A7KAU;;A7KAU;C01;pieces;;;
+;55A7KAU;;A7KAU;C01;pieces;;;
+;65A7KAU;;A7KAU;C01;pieces;;;
+;75A7KAU;;A7KAU;C01;pieces;;;
+;85A7KAU;;A7KAU;C01;pieces;;;
+
+;75UXAU;;UXAU;C01;pieces;;;
+;85UXAU;;UXAU;C01;pieces;;;
+
+;HAWJ9KR;;HAWJ;C14;pieces;;;
+;HAWJ12KR;;HAWJ;C14;pieces;;;
+;HAWJ18KR;;HAWJ;C14;pieces;;;
+;HAWJ24KR;;HAWJ;C14;pieces;;;
+;HAWJ28KR;;HAWJ;C14;pieces;;;
+
+;AUC-50UR4RJC1;AUC;C14;pieces;;;
+;AUC-71UR4RJC1;AUC;C14;pieces;;;
+;AUC-100UR4RKC1;AUC;C14;pieces;;;
+;AUC-125UR4RJC1;AUC;C14;pieces;;;
+;AUC-140UR4RKC1;AUC;C14;pieces;;;
+
+;AMW2-52U4RJC;AMW;C15;pieces;;;
+;AMW3-71U4RJC;AMW;C15;pieces;;;
+;AMW4-80U4RJC;AMW;C15;pieces;;;
+;AMW4-100U4RAA;AMW;C15;pieces;;;
+;AMW5-125U4RTA;AMW;C15;pieces;;;
+
+;AMD-25UX4RAL4;AMD;C15;pieces;;;
+;AMD-35UX4RBL4;AMD;C15;pieces;;;
+;AMD-50UX4RCL4;AMD;C15;pieces;;;
+;AMD-71UX4RCL4;AMD;C15;pieces;;;
+
+
+
+
+
+
+# Update allProducts with localisations
+UPDATE Product;code[unique=true];$catalogVersion;name[lang=$lang];summary[lang=$lang];description[lang=$lang];
+
+;43A7KAU;;43″ UHD 4K TV SERIES A7KAU;;4K AI Upscaler Dolby Vision·Atmos Game Mode Plus VIDAA U6 Smart TV
+;50A7KAU;;50″ UHD 4K TV SERIES A7KAU;;4K AI Upscaler Dolby Vision·Atmos Game Mode Plus VIDAA U6 Smart TV
+;55A7KAU;;55″ UHD 4K TV SERIES A7KAU;;4K AI Upscaler Dolby Vision·Atmos Game Mode Plus VIDAA U6 Smart TV
+;65A7KAU;;65″ UHD 4K TV SERIES A7KAU;;4K AI Upscaler Dolby Vision·Atmos Game Mode Plus VIDAA U6 Smart TV
+;75A7KAU;;75″ UHD 4K TV SERIES A7KAU;;4K AI Upscaler Dolby Vision·Atmos Game Mode Plus VIDAA U6 Smart TV
+;85A7KAU;;85″ UHD 4K TV SERIES A7KAU;;4K AI Upscaler Dolby Vision·Atmos Game Mode Plus VIDAA U6 Smart TV
+
+;75UXAU;;75″ ULED X MINI-LED X SERIES UXAU;;ULED X Mini-LED X Hi-View Engine X Dynamic X-Display VIDAA U7 Smart TV
+;85UXAU;;85″ ULED X MINI-LED X SERIES UXAU;;ULED X Mini-LED X Hi-View Engine X Dynamic X-Display VIDAA U7 Smart TV
+
+;PX2-PRO;;TRICHROMA LASER CINEMA SERIES PX2-PRO;;90”~130″ Projection Size 4K Ultra Short Throw Laser Engine TriChroma X-Fusion™ Laser Light Dolby Vision HDR™
+;PL1H;;LASER CINEMA SERIES PL1H;;80”~120″ Projection Size 4K Ultra Short Throw Laser Engine X-Fusion™ Laser Light Source High Dynamic Range
+;HS2100;;2.1CH SOUNDBAR WITH WIRELESS SUBWOOFER;;2.1 Channel Speakers DTS Virtual:X Bluetooth EzPlay
+;AX5100G;;DOLBY ATMOS 5.1 SOUNDBAR AX5100G;;Dolby Atmos with Rear Speakers DTSX HDMI-ARC Bluetooth
+;HRCD483TBW;;PUREFLAT SLIM FRENCH DOOR 483L DARK STEEL;;Slim Fit Dual-Tech Cooling My Fresh Choice PureFlat Collection
+;HRBM417S;;BOTTOM MOUNT SILVER 417L;;PureFlat Design Multi Air Flow System Holiday Powersave Function Reversible Door
+;HRBC140;;140 CAN BEVERAGE CHILLER;;Silver Finish Digital Touch Control Adjustable Shelf Total No Frost
+;HRWC31;;HISENSE 30 BOTTLE WINE CABINET BLACK;;Anti-UV and Low E Glass 5~18°C Wide Temp Range Low Noise & Low Vibration Electronic Touch Control
+;HSGP15FB;;BLACK STEEL DISHWASHER WITH 15 PLACE SETTINGS;;15 Place Settings UV Hygiene Guard ConnectLife Enabled Flexible Loading Options
+;HSCE14FS;;STAINLESS STEEL DISHWASHER WITH 14 PLACE SETTINGS;;14 Place Settings Collapsible Cutlery Tray Flexible Bottom Basket Auto Wash Program
+;HWFS1015AB;;HISENSE FRONT LOAD WASHER 10KG – SERIES 7 (2023);;ConnectLife Enabled Auto Dosing UV Hygiene 5 STAR Energy Rating
+;HWFS1015E;;HISENSE FRONT LOAD WASHER 10KG – SERIES 5 (2023);;ConnectLife Enabled Steam Function Quick 15′ & Quick 30′ Modes 5 STAR Energy Rating
+;HDFS90HAB;;HISENSE HEAT PUMP DRYER 9KG – SERIES 7 (2023);;ConnectLife Enabled Quick Dry 30′ Ion Refresh 9 STAR Energy Rating
+;HDFY80H;;FRONT LOAD HEAT PUMP DRYER 8KG – PUREJET (2022);;Power Airflow Anti Crease FlexRack 8 STAR Energy Rating
+;HAWV9KR;;2.5KW V SERIES REVERSE CYCLE A/C;;Mobile App Control HI-NANO Technology Eco Mode Self Cleaning
+
+;HAWJ9KR;;2.5KW J SERIES WALL MOUNTED;;Easy Installation Eco-friendly R32 Refrigerant Voice Control Wi-Fi Control
+;HAWJ12KR;;3.5KW J SERIES WALL MOUNTED;;Easy Installation Eco-friendly R32 Refrigerant Voice Control Wi-Fi Control
+;HAWJ18KR;;5.3KW J SERIES WALL MOUNTED;;Easy Installation Eco-friendly R32 Refrigerant Voice Control Wi-Fi Control
+;HAWJ24KR;;7.1KW J SERIES WALL MOUNTED;;Easy Installation Eco-friendly R32 Refrigerant Voice Control Wi-Fi Control
+;HAWJ28KR;;8KW J SERIES WALL MOUNTED;;Easy Installation Eco-friendly R32 Refrigerant Voice Control Wi-Fi Control
+
+;AUC-50UR4RJC1;;5KW CASSETTE;;Slim Design Round Flow Individual Airflow Fresh Air Intake
+;AUC-71UR4RJC1;;7.3KW CASSETTE;;Slim Design Round Flow Individual Airflow Fresh Air Intake
+;AUC-100UR4RKC1;;10KW CASSETTE;;Slim Design Round Flow Individual Airflow Fresh Air Intake
+;AUC-125UR4RJC1;;12.5KW CASSETTE;;Slim Design Round Flow Individual Airflow Fresh Air Intake
+;AUC-140UR4RKC1;;14KW CASSETTE;;Slim Design Round Flow Individual Airflow Fresh Air Intake
+
+;AMW2-52U4RJC;;5KW MULTI HEAD;;Individual Temperature Control for each zone Wi-Fi Control Anti-corrosive Golden Fin PCB With Insect Prevention
+;AMW3-71U4RJC;;7KW MULTI HEAD;;Individual Temperature Control for each zone Wi-Fi Control Anti-corrosive Golden Fin PCB With Insect Prevention
+;AMW4-80U4RJC;;8KW MULTI HEAD;;Individual Temperature Control for each zone Wi-Fi Control Anti-corrosive Golden Fin PCB With Insect Prevention
+;AMW4-100U4RAA;;10KW MULTI HEAD;;Individual Temperature Control for each zone Wi-Fi Control Anti-corrosive Golden Fin PCB With Insect Prevention
+;AMW5-125U4RTA;;12KW MULTI HEAD;;Individual Temperature Control for each zone Wi-Fi Control Anti-corrosive Golden Fin PCB With Insect Prevention
+
+;AMD-25UX4RAL4;;2.5KW BULK HEAD;;Narrow Depth & Slim Height Multiple Control Solution Inner High Lift Pump Easy Installation
+;AMD-35UX4RBL4;;3.5KW BULK HEAD;;Narrow Depth & Slim Height Multiple Control Solution Inner High Lift Pump Easy Installation
+;AMD-50UX4RCL4;;5KW BULK HEAD;;Narrow Depth & Slim Height Multiple Control Solution Inner High Lift Pump Easy Installation
+;AMD-71UX4RCL4;;7.1KW BULK HEAD;;Narrow Depth & Slim Height Multiple Control Solution Inner High Lift Pump Easy Installation
+
+
+
+
+
+
+
+

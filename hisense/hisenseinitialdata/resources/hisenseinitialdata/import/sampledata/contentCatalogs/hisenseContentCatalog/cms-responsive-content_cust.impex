@@ -1,0 +1,144 @@
+# -----------------------------------------------------------------------
+# Copyright (c) 2019 SAP SE or an SAP affiliate company. All rights reserved.
+# -----------------------------------------------------------------------
+$contentCatalog=hisense-spaContentCatalog
+$contentCatalogName=hisense Content Catalog
+$contentCV=catalogVersion(CatalogVersion.catalog(Catalog.id[default=$contentCatalog]),CatalogVersion.version[default=Online])[default=$contentCatalog:Online]
+$productCatalog=hisenseProductCatalog
+$productCatalogName=hisense Product Catalog
+$productCV=catalogVersion(catalog(id[default=$productCatalog]),version[default='Staged'])[unique=true,default=$productCatalog:Online]
+$siteResource=jar:de.hybris.platform.hisensestore.constants.hisensestoreConstants&/hisensestore/import/sampledata/contentCatalogs/$contentCatalog
+$medias=medias(code, $contentCV);
+$mediaContainer=media(qualifier, $contentCV);
+$product=product(code, $productCV)
+$category=category(code, $productCV)
+$jarResourceCms=jar:de.hybris.platform.hisensestore.constants.hisensestoreConstants&/hisensestore/import/sampledata/cockpits/cmscockpit
+$media=media(code, $contentCV);
+$productResource=jar:de.hybris.platform.hisensestore.constants.hisensestoreConstants&/hisensestore/import/sampledata/productCatalogs/$productCatalog
+$lang=en
+
+
+INSERT_UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];name;url;&linkRef;&componentRef;target(code)[default='sameWindow'];$category;$product;
+;;TvCategoryLink;TV & ENTERTAINMENT;/c/C01;TvCategoryLink;TvCategoryLink;;C01;;
+;;TelevisionCategoryLink;Television;/c/C04;TelevisionCategoryLink;TelevisionCategoryLink;;C04;;
+;;LaserCategoryLink;Laser;/c/C05;LaserCategoryLink;LaserCategoryLink;;C05;;
+;;SoundCategoryLink;Sound Bars;/c/C06;SoundCategoryLink;SoundCategoryLink;;C06;;
+
+;;HomeCategoryLink;HOME APPLIANCES;/c/C02;HomeCategoryLink;HomeCategoryLink;;C02;;
+;;FridgesCategoryLink;Fridges;/c/C07;FridgesCategoryLink;FridgesCategoryLink;;C07;;
+;;WineCategoryLink;Wine Cabinets;/c/C08;WineCategoryLink;WineCategoryLink;;C08;;
+;;DishwasherCategoryLink;Dishwasher;/c/C09;DishwasherCategoryLink;DishwasherCategoryLink;;C09;;
+;;LaundryCategoryLink;Laundry;/c/C10;LaundryCategoryLink;LaundryCategoryLink;;C10;;
+
+;;WashersCategoryLink;Washers;/c/C11;WashersCategoryLink;WashersCategoryLink;;C11;;
+;;DryersCategoryLink;Dryers;/c/C12;DryersCategoryLink;DryersCategoryLink;;C12;;
+
+;;AirCategoryLink;Air Conitioning;/c/C03;AirCategoryLink;AirCategoryLink;;C03;;
+;;WallCategoryLink;Wall Mounted;/c/C13;WallCategoryLink;WallCategoryLink;;C13;;
+;;SingleCategoryLink;Single Split;/c/C14;SingleCategoryLink;SingleCategoryLink;;C14;;
+;;MultiCategoryLink;Multi Split;/c/C15;MultiCategoryLink;MultiCategoryLink;;C15;;
+
+
+
+
+
+INSERT_UPDATE CMSNavigationNode;uid[unique=true];$contentCV[unique=true];name;parent(uid, $contentCV);links(&linkRef);&nodeRef
+;TvNavNode;;TV & ENTERTAINMENT;;TvCategoryLink;TvNavNode
+;TvLinksNavNode;;TV & ENTERTAINMENT Links;;TelevisionCategoryLink,LaserCategoryLink,SoundCategoryLink;TvLinksNavNode
+
+;HomeNavNode;;HOME APPLIANCES;;HomeCategoryLink;HomeNavNode
+;HomeLinksNavNode;;HOME APPLIANCES Links;;FridgesCategoryLink,WineCategoryLink,DishwasherCategoryLink,LaundryCategoryLink;HomeLinksNavNode
+
+;AirNavNode;;Air Conitioning;;AirCategoryLink;AirNavNode
+;AirLinksNavNode;;Air Conitioning Links;;WallCategoryLink,SingleCategoryLink,MultiCategoryLink;AirLinksNavNode
+
+;LaundryNavNode;;Laundry;;LaundryCategoryLink;LaundryNavNode
+;LaundryLinksNavNode;;Laundry Links;;WashersCategoryLink,DryersCategoryLink;LaundryLinksNavNode
+
+
+INSERT_UPDATE CMSNavigationNode;uid[unique=true];$contentCV[unique=true];name;&nodeRef;children(uid,$contentCV);links(&linkRef);
+;TvNavNode;;TV & ENTERTAINMENT;TvNavNode;TvLinksNavNode
+;HomeNavNode;;HOME APPLIANCES;HomeNavNode;HomeLinksNavNode
+;AirNavNode;;Air Conitioning;AirNavNode;AirLinksNavNode
+
+;LaundryNavNode;;Laundry;LaundryNavNode;LaundryLinksNavNode
+
+#;HomeLinksNavNode;;HOME Links APPLIANCES;HomeLinksNavNode;LaundryLinksNavNode
+
+
+
+INSERT_UPDATE CMSNavigationEntry;uid[unique=true];$contentCV[unique=true];name;navigationNode(&nodeRef);item(CMSLinkComponent.uid,CMSLinkComponent.$contentCV);
+;TvNavNodeEntry;;Tv Navigation Node Entry;TvNavNode;TvCategoryLink;
+;HomeNavNodeEntry;;Home Navigation Node Entry;HomeNavNode;HomeCategoryLink;
+;AirNavNodeEntry;;Air Navigation Node Entry;AirNavNode;AirCategoryLink;
+
+;LaundryNavNodeEntry;;Laundry Navigation Node Entry;LaundryNavNode;LaundryCategoryLink;
+
+
+INSERT_UPDATE CMSNavigationNode;uid[unique=true];$contentCV[unique=true];name;&nodeRef;children(uid,$contentCV);links(&linkRef);
+;TvLinksNavNode;;Tv Links;TvLinksNavNode;TelevisionNavNode,LaserNavNode,SoundNavNode
+;HomeLinksNavNode;;Home Links;HomeLinksNavNode;FridgesNavNode,WineNavNode,DishwasherNavNode,LaundryNavNode
+;AirLinksNavNode;;Air Links;AirLinksNavNode;WallNavNode,SingleNavNode,MultiNavNode
+
+;LaundryLinksNavNode;;Laundry Links;LaundryLinksNavNode;WashersNavNode,DryersNavNode
+
+INSERT_UPDATE CMSNavigationNode;uid[unique=true];$contentCV[unique=true];name;&nodeRef
+;TelevisionNavNode;;Television Link;TelevisionNavNode
+;LaserNavNode;;Laser Link;LaserNavNode
+;SoundNavNode;;Sound Link;SoundNavNode
+
+;FridgesNavNode;;Fridges;FridgesNavNode
+;WineNavNode;;Wine Cabinets;WineNavNode
+;DishwasherNavNode;;Dishwasher;DishwasherNavNode
+
+;WallNavNode;;Wall Link;WallNavNode
+;SingleNavNode;;Single Link;SingleNavNode
+;MultiNavNode;;Multi Link;MultiNavNode
+
+;WashersNavNode;;Washers Link;WashersNavNode
+;DryersNavNode;;Dryers Link;DryersNavNode
+
+
+
+INSERT_UPDATE CMSNavigationEntry;uid[unique=true];$contentCV[unique=true];name;navigationNode(&nodeRef);item(CMSLinkComponent.uid,CMSLinkComponent.$contentCV);
+;TelevisionNavNodeEntry;;Television Navigation Node Entry;TelevisionNavNode;TelevisionCategoryLink;
+;LaserNavNodeEntry;;Laser Navigation Node Entry;LaserNavNode;LaserCategoryLink;
+;SoundNavNodeEntry;;Sound Navigation Node Entry;SoundNavNode;SoundCategoryLink;
+
+;FridgesNavNodeEntry;;Fridges Navigation Node Entry;FridgesNavNode;FridgesCategoryLink;
+;WineNavNodeEntry;;Wine Navigation Node Entry;WineNavNode;WineCategoryLink;
+;DishwasherNavNodeEntry;;Dishwasher Navigation Node Entry;DishwasherNavNode;DishwasherCategoryLink;
+
+;WallNavNodeEntry;;Wall Navigation Node Entry;WallNavNode;WallCategoryLink;
+;SingleNavNodeEntry;;Single Navigation Node Entry;SingleNavNode;SingleCategoryLink;
+;MultiNavNodeEntry;;Multi Navigation Node Entry;MultiNavNode;MultiCategoryLink;
+
+
+;WashersNavNodeEntry;;Washers Navigation Node Entry;WashersNavNode;WashersCategoryLink;
+;DryersNavNodeEntry;;Dryers Navigation Node Entry;DryersNavNode;DryersCategoryLink;
+
+
+
+INSERT_UPDATE CMSNavigationNode;uid[unique=true];$contentCV[unique=true];name;parent(uid, $contentCV);&nodeRef;children(uid,$contentCV)
+;hisenseCategoryNavNode;;Categories;hisenseNavNode;hisenseCategoryNavNode;TvNavNode,HomeNavNode,AirNavNode
+
+
+UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];linkName[lang=$lang]
+;;TvCategoryLink;"TV & ENTERTAINMENT"
+;;TelevisionCategoryLink;"Television"
+;;LaserCategoryLink;"Laser"
+;;SoundCategoryLink;"Sound"
+
+;;HomeCategoryLink;"HOME APPLIANCES"
+;;FridgesCategoryLink;"Fridges"
+;;WineCategoryLink;"Wine Cabinets"
+;;DishwasherCategoryLink;"Dishwasher"
+;;LaundryCategoryLink;"Laundry"
+
+;;AirCategoryLink;"Air Conitioning"
+;;WallCategoryLink;"Wall Mounted"
+;;SingleCategoryLink;"Single Split"
+;;MultiCategoryLink;"Multi Split"
+
+;;WashersCategoryLink;"Washers"
+;;DryersCategoryLink;"Dryers"

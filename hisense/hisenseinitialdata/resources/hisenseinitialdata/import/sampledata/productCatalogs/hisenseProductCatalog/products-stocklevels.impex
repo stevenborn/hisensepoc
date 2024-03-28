@@ -1,0 +1,125 @@
+# -----------------------------------------------------------------------
+# Copyright (c) 2019 SAP SE or an SAP affiliate company. All rights reserved.
+# -----------------------------------------------------------------------
+# ImpEx for Importing Products Store Stock Levels into hisense Store
+
+# Macros / Replacement Parameter definitions
+$productCatalog=hisenseProductCatalog
+$productCatalogName=hisense Product Catalog
+$catalogVersion=catalogversion(catalog(id[default=$productCatalog]),version[default='Staged'])[unique=true,default=$productCatalog:Staged]
+$category=category(code, $catalogVersion)
+$vendor=hisense
+
+
+# Create some Warehouses for the Vendor
+INSERT_UPDATE Warehouse;code[unique=true];name[lang=zh];vendor(code)[default=$vendor];default[default='true']
+;warehouse_s;Warehouse South;hisense;
+;warehouse_e;Warehouse East;hisense;
+;warehouse_w;Warehouse West;hisense;
+;warehouse_n;Warehouse North;hisense;
+
+
+
+
+UPDATE Warehouse;code[unique=true];$category
+;warehouse_s;C04
+;warehouse_e;C01
+;warehouse_w;C02
+;warehouse_n;C03
+
+
+
+
+
+
+INSERT_UPDATE StockLevel;productCode[unique=true];warehouse(code)[unique=true,default=default];available;inStockStatus(code);maxPreOrder[default=1];maxStockLevelHistoryCount[default=-1];overSelling[default=0];preOrder[default=0];reserved[default=0]
+;PX2-PRO;warehouse_w;100;notSpecified
+;HSGP15FB;warehouse_w;100;forceInStock
+;HWFS1015AB;warehouse_w;100;forceInStock
+;43A7KAU;warehouse_w;100;forceInStock
+;50A7KAU;warehouse_w;100;forceInStock
+;55A7KAU;warehouse_w;100;forceInStock
+;65A7KAU;warehouse_w;100;forceInStock
+;75A7KAU;warehouse_w;100;forceInStock
+;85A7KAU;warehouse_w;100;forceInStock
+;AMD-25UX4RAL4;warehouse_w;100;forceInStock
+;AMD-35UX4RBL4;warehouse_w;100;forceInStock
+;AMD-50UX4RCL4;warehouse_w;100;forceInStock
+;AMD-71UX4RCL4;warehouse_w;100;forceInStock
+;HS2100;warehouse_w;100;forceInStock
+;HAWV9KR;warehouse_w;100;forceInStock
+;HRBC140;warehouse_w;100;forceInStock
+;HRCD483TBW;warehouse_w;100;forceInStock
+;AUC-50UR4RJC1;warehouse_w;100;forceInStock
+;AUC-71UR4RJC1;warehouse_w;100;forceInStock
+;AUC-100UR4RKC1;warehouse_w;100;forceInStock
+;AUC-125UR4RJC1;warehouse_w;100;forceInStock
+;AUC-140UR4RKC1;warehouse_w;100;forceInStock
+;HDFS90HAB;warehouse_w;100;forceInStock
+;75UXAU;warehouse_w;100;forceInStock
+;85UXAU;warehouse_w;100;forceInStock
+;HRWC31;warehouse_w;100;forceInStock
+;HSCE14FS;warehouse_w;100;forceInStock
+;HRBM417S;warehouse_w;100;forceInStock
+;HDFY80H;warehouse_w;100;forceInStock
+;AMW2-52U4RJC;warehouse_w;100;forceInStock
+;AMW3-71U4RJC;warehouse_w;100;forceInStock
+;AMW4-80U4RJC;warehouse_w;100;forceInStock
+;AMW4-100U4RAA;warehouse_w;100;forceInStock
+;AMW5-125U4RTA;warehouse_w;100;forceInStock
+;HWFS1015E;warehouse_w;100;forceInStock
+;AX5100G;warehouse_w;100;forceInStock
+;HAWJ9KR;warehouse_w;100;forceInStock
+;HAWJ12KR;warehouse_w;100;forceInStock
+;HAWJ18KR;warehouse_w;100;forceInStock
+;HAWJ24KR;warehouse_w;100;forceInStock
+;HAWJ28KR;warehouse_w;100;forceInStock
+
+
+
+INSERT_UPDATE Product;code[unique=true];stockLevels(productCode,warehouse(code));vendors(code)[default=$vendor];$catalogVersion
+;PX2-PRO;PX2-PRO:warehouse_w
+;HSGP15FB;HSGP15FB:warehouse_w
+;HWFS1015AB;HWFS1015AB:warehouse_w
+;43A7KAU;43A7KAU:warehouse_w
+;50A7KAU;50A7KAU:warehouse_w
+;55A7KAU;55A7KAU:warehouse_w
+;65A7KAU;65A7KAU:warehouse_w
+;75A7KAU;75A7KAU:warehouse_w
+;85A7KAU;85A7KAU:warehouse_w
+;AMD-25UX4RAL4;AMD-25UX4RAL4:warehouse_w
+;AMD-35UX4RBL4;AMD-35UX4RBL4:warehouse_w
+;AMD-50UX4RCL4;AMD-50UX4RCL4:warehouse_w
+;AMD-71UX4RCL4;AMD-71UX4RCL4:warehouse_w
+;HS2100;HS2100:warehouse_w
+;HAWV9KR;HAWV9KR:warehouse_w
+;HRBC140;HRBC140:warehouse_w
+;HRCD483TBW;HRCD483TBW:warehouse_w
+;AUC-50UR4RJC1;AUC-50UR4RJC1:warehouse_w
+;AUC-71UR4RJC1;AUC-71UR4RJC1:warehouse_w
+;AUC-100UR4RKC1;AUC-100UR4RKC1:warehouse_w
+;AUC-125UR4RJC1;AUC-125UR4RJC1:warehouse_w
+;AUC-140UR4RKC1;AUC-140UR4RKC1:warehouse_w
+;HDFS90HAB;HDFS90HAB:warehouse_w
+;75UXAU;75UXAU:warehouse_w
+;85UXAU;85UXAU:warehouse_w
+;HRWC31;HRWC31:warehouse_w
+;HSCE14FS;HSCE14FS:warehouse_w
+;HRBM417S;HRBM417S:warehouse_w
+;HDFY80H;HDFY80H:warehouse_w
+;AMW2-52U4RJC;AMW2-52U4RJC:warehouse_w
+;AMW3-71U4RJC;AMW3-71U4RJC:warehouse_w
+;AMW4-80U4RJC;AMW4-80U4RJC:warehouse_w
+;AMW4-100U4RAA;AMW4-100U4RAA:warehouse_w
+;AMW5-125U4RTA;AMW5-125U4RTA:warehouse_w
+;HWFS1015E;HWFS1015E:warehouse_w
+;AX5100G;AX5100G:warehouse_w
+;HAWJ9KR;HAWJ9KR:warehouse_w
+;HAWJ12KR;HAWJ12KR:warehouse_w
+;HAWJ18KR;HAWJ18KR:warehouse_w
+;HAWJ24KR;HAWJ24KR:warehouse_w
+;HAWJ28KR;HAWJ28KR:warehouse_w
+
+
+
+

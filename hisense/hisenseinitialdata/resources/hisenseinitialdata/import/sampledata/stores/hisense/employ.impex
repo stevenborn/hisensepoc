@@ -1,0 +1,5 @@
+$defaultPassword=11
+
+
+INSERT_UPDATE Employee;name;password[default=$defaultPassword];uid[unique=true];groups(uid)[mode=append]
+                      ;agent;;test111;warehousemanagerrole

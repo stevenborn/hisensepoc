@@ -1,0 +1,65 @@
+# -----------------------------------------------------------------------
+# Copyright (c) 2019 SAP SE or an SAP affiliate company. All rights reserved.
+# -----------------------------------------------------------------------
+# ImpEx for Importing Products Store Stock Levels into hisense Store
+
+# Macros / Replacement Parameter definitions
+$productCatalog=hisenseProductCatalog
+$productCatalogName=hisense Product Catalog
+$catalogVersion=catalogversion(catalog(id[default=$productCatalog]),version[default='Staged'])[unique=true,default=$productCatalog:Staged]
+$vendor=hisense
+
+
+# Create some Warehouses for the Vendor
+INSERT_UPDATE Warehouse;code[unique=true];vendor(code)[default=$vendor];default[default='false']
+#;ch01_warehouse;长禾01仓
+#;ch02_warehouse;长禾02仓
+#;ch03_warehouse;长禾03仓
+#;ch04_warehouse;长禾04仓
+#;ch05_warehouse;长禾05仓
+#;ch06_warehouse;长禾06仓
+#;ch07_warehouse;长禾07仓
+#;ch08_warehouse;长禾08仓
+#;ch09_warehouse;长禾09仓
+#;ch10_warehouse;长禾10仓
+#;ch11_warehouse;长禾11仓
+#;ch12_warehouse;长禾12仓
+#;ch13_warehouse;长禾13仓
+#;ch14_warehouse;长禾14仓
+#;ch15_warehouse;长禾15仓
+#;ch16_warehouse;长禾16仓
+#;ch17_warehouse;长禾17仓
+#;ch18_warehouse;长禾18仓
+#;ch19_warehouse;长禾19仓
+#;ch20_warehouse;长禾20仓
+#;ch21_warehouse;长禾21仓
+#;ch22_warehouse;长禾22仓
+#;ch23_warehouse;长禾23仓
+#;ch24_warehouse;长禾24仓
+#;ch25_warehouse;长禾25仓
+#;ch26_warehouse;长禾26仓
+#;ch27_warehouse;长禾27仓
+#;ch28_warehouse;长禾28仓
+#;ch29_warehouse;长禾29仓
+#;ch30_warehouse;长禾30仓
+#;ch31_warehouse;长禾31仓
+#;ch32_warehouse;长禾32仓
+
+
+
+
+
+
+INSERT_UPDATE StockLevel;productCode[unique=true];warehouse(code)[unique=true,default=default];available;inStockStatus(code);maxPreOrder[default=1];maxStockLevelHistoryCount[default=-1];overSelling[default=0];preOrder[default=0];reserved[default=0]
+#;p001;ch_warehouse;99;notSpecified
+#;p002;ch_warehouse;18;notSpecified
+
+
+
+INSERT_UPDATE Product;code[unique=true];stockLevels(productCode,warehouse(code));vendors(code)[default=$vendor];$catalogVersion
+#;p001;p001:ch_warehouse
+#;p002;p002:ch_warehouse
+
+
+
+

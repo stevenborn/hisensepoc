@@ -1,0 +1,166 @@
+# -----------------------------------------------------------------------
+# Copyright (c) 2022 SAP SE or an SAP affiliate company. All rights reserved.
+# -----------------------------------------------------------------------
+# ImpEx for Importing Products into hisense Store
+
+# Macros / Replacement Parameter definitions
+$productCatalog=hisenseProductCatalog
+$productCatalogName=hisense Product Catalog
+$catalogVersion=catalogversion(catalog(id[default=$productCatalog]),version[default='Staged'])[unique=true,default=$productCatalog:Staged]
+$supercategories=supercategories(code, $catalogVersion)
+$baseProduct=baseProduct(code,$catalogVersion)
+$approved=approvalstatus(code)[default='check']
+$lang=en
+
+
+
+INSERT_UPDATE VariantCategory      ; code[unique=true] ; name[lang=$lang]       ; $supercategories ; hasImage ; $catalogVersion ; allowedPrincipals(uid)[default='customergroup']
+                                   ; tv_Size         ; Size      ;                  ; true
+
+INSERT_UPDATE VariantValueCategory ; code[unique=true] ; name[lang=$lang]       ; $supercategories ; sequence ; $catalogVersion ; allowedPrincipals(uid)[default='customergroup']
+; 43          ; 43″        ; tv_Size        ; 1
+; 50          ; 50″        ; tv_Size        ; 2
+; 55          ; 55″        ; tv_Size        ; 3
+; 65          ; 65″        ; tv_Size        ; 4
+; 75          ; 75″        ; tv_Size        ; 5
+; 85          ; 85″        ; tv_Size        ; 6
+
+
+
+INSERT_UPDATE Product;code[unique=true];$supercategories;manufacturerName;manufacturerAID;unit(code);ean;variantType(code);$catalogVersion;$approved
+;A7KAU;C01,C04,tv_Size;Hisense;Hisense;pieces;;GenericVariantProduct;;approved
+;UXAU;C01,C04,tv_Size;Hisense;Hisense;pieces;;GenericVariantProduct;;approved
+
+;PX2-PRO;C01,C05;Hisense;Hisense;pieces;;;;approved
+;PL1H;C01,C05;Hisense;Hisense;pieces;;;;approved
+;HS2100;C01,C06;Hisense;Hisense;pieces;;;;approved
+;AX5100G;C01,C06;Hisense;Hisense;pieces;;;;approved
+
+;HRCD483TBW;C02,C07;Hisense;Hisense;pieces;;;;approved
+;HRBM417S;C02,C07;Hisense;Hisense;pieces;;;;approved
+
+;HRBC140;C02,C08;Hisense;Hisense;pieces;;;;approved
+;HRWC31;C02,C08;Hisense;Hisense;pieces;;;;approved
+
+;HSGP15FB;C02,C09;Hisense;Hisense;pieces;;;;approved
+;HSCE14FS;C02,C09;Hisense;Hisense;pieces;;;;approved
+
+;HWFS1015AB;C02,C10,C11;Hisense;Hisense;pieces;;;;approved
+;HWFS1015E;C02,C10,C11;Hisense;Hisense;pieces;;;;approved
+
+;HDFS90HAB;C02,C10,C12;Hisense;Hisense;pieces;;;;approved
+;HDFY80H;C02,C10,C12;Hisense;Hisense;pieces;;;;approved
+
+;HAWV9KR;C03,C13;Hisense;Hisense;pieces;;;;approved
+
+;AUC-50UR4RJC1;C03,C14;Hisense;Hisense;pieces;;;;approved
+;AMW2-52U4RJC;C03,C15;Hisense;Hisense;pieces;;;;approved
+
+
+INSERT_UPDATE GenericVariantProduct;code[unique=true];$baseProduct;$catalogVersion;ean;$supercategories;$approved
+;43A7KAU;A7KAU;;;43;approved
+;50A7KAU;A7KAU;;;50;approved
+;55A7KAU;A7KAU;;;55;approved
+;65A7KAU;A7KAU;;;65;approved
+;75A7KAU;A7KAU;;;75;approved
+;85A7KAU;A7KAU;;;85;approved
+
+;75UXAU;UXAU;;;75;approved
+;85UXAU;UXAU;;;85;approved
+
+
+UPDATE Product;code[unique=true];$catalogVersion;name[lang=$lang];summary[lang=$lang];description[lang=$lang];productType;year;screenSet
+;43A7KAU;;"43″ UHD 4K TV SERIES A7KAU";"4K AI Upscaler Dolby Vision·Atmos Game Mode Plus VIDAA U6 Smart TV";"The A7KAU is packed with great features like Wide Colour Gamut for pure colours with stunning gradients, a 4K AI upscaler that works to upgrade your content to near-4k quality and Dolby Vision · Atmos for an authentic movie experience with cinema’s leading technologies. The Series A7KAU is sure to impress! As models may vary from country to country (even though products may have the same model number), please check the specifications. This is the Australian model.";"4k Ultra HD";"2023";43"
+;50A7KAU;;"50″ UHD 4K TV SERIES A7KAU";"4K AI Upscaler Dolby Vision·Atmos Game Mode Plus VIDAA U6 Smart TV";"The A7KAU is packed with great features like Wide Colour Gamut for pure colours with stunning gradients, a 4K AI upscaler that works to upgrade your content to near-4k quality and Dolby Vision · Atmos for an authentic movie experience with cinema’s leading technologies. The Series A7KAU is sure to impress! As models may vary from country to country (even though products may have the same model number), please check the specifications. This is the Australian model.";"4k Ultra HD";"2023";50"
+;55A7KAU;;"55″ UHD 4K TV SERIES A7KAU";"4K AI Upscaler Dolby Vision·Atmos Game Mode Plus VIDAA U6 Smart TV";"The A7KAU is packed with great features like Wide Colour Gamut for pure colours with stunning gradients, a 4K AI upscaler that works to upgrade your content to near-4k quality and Dolby Vision · Atmos for an authentic movie experience with cinema’s leading technologies. The Series A7KAU is sure to impress! As models may vary from country to country (even though products may have the same model number), please check the specifications. This is the Australian model.";"4k Ultra HD";"2023";55"
+;65A7KAU;;"65″ UHD 4K TV SERIES A7KAU";"4K AI Upscaler Dolby Vision·Atmos Game Mode Plus VIDAA U6 Smart TV";"The A7KAU is packed with great features like Wide Colour Gamut for pure colours with stunning gradients, a 4K AI upscaler that works to upgrade your content to near-4k quality and Dolby Vision · Atmos for an authentic movie experience with cinema’s leading technologies. The Series A7KAU is sure to impress! As models may vary from country to country (even though products may have the same model number), please check the specifications. This is the Australian model.";"4k Ultra HD";"2023";65"
+;75A7KAU;;"75″ UHD 4K TV SERIES A7KAU";"4K AI Upscaler Dolby Vision·Atmos Game Mode Plus VIDAA U6 Smart TV";"The A7KAU is packed with great features like Wide Colour Gamut for pure colours with stunning gradients, a 4K AI upscaler that works to upgrade your content to near-4k quality and Dolby Vision · Atmos for an authentic movie experience with cinema’s leading technologies. The Series A7KAU is sure to impress! As models may vary from country to country (even though products may have the same model number), please check the specifications. This is the Australian model.";"4k Ultra HD";"2023";75"
+;85A7KAU;;"85″ UHD 4K TV SERIES A7KAU";"4K AI Upscaler Dolby Vision·Atmos Game Mode Plus VIDAA U6 Smart TV";"The A7KAU is packed with great features like Wide Colour Gamut for pure colours with stunning gradients, a 4K AI upscaler that works to upgrade your content to near-4k quality and Dolby Vision · Atmos for an authentic movie experience with cinema’s leading technologies. The Series A7KAU is sure to impress! As models may vary from country to country (even though products may have the same model number), please check the specifications. This is the Australian model.";"4k Ultra HD";"2023";85"
+
+;75UXAU;;75″ ULED X MINI-LED X SERIES UXAU;"ULED X Mini-LED X Hi-View Engine X Dynamic X-Display VIDAA U7 Smart TV";"Introducing the ULED X, an entirely new class of Mini-LED. Powered by a ground breaking chipset & our Mini-LED X technology, the new ULED X delivers outrageous performance, superior contrast, exceptional brightness, and brilliant colour accuracy. It’s the ultimate Mini-LED home entertainment solution.
+Mini LED X is at the apex of backlight technology. Combined with Hisense’s renowned ULED™ technology and Quantum Dot, you’ll experience stunning visuals with unparalleled lifelike contrast and colours, with its impressive trademark bright picture.
+Hi-View Engine X is Hisense’s state-of-the-art proprietary driving force. Powered by AI technology, the TV’s smart engine simulates human brain patterns to process and optimise image and sound quality, ensuring the best possible outcome.
+Dynamic X-Display elevates your viewing pleasure by enhancing the picture quality, delivering a flawless, captivating visual experience.
+Dolby Vision™ IQ and HDR 10+ Adaptive, accompanied by Dynamic Tone Mapping, bring your content to life by optimising and automatically adapting your viewing experience to the lighting conditions in your environment.
+CineStage X 4.1.2 Surround is an advanced audio technology that ensures every sound is reproduced with utmost precision, immersing the viewer in a realistic and powerful sound that enhances your overall entertainment experience.
+As models may vary from country to country (even though products may have the same model number), please check the specifications. This is the Australian model.";"ULED";"2023";"75"
+
+;85UXAU;;85″ ULED X MINI-LED X SERIES UXAU;"ULED X Mini-LED X Hi-View Engine X Dynamic X-Display VIDAA U7 Smart TV";"Introducing the ULED X, an entirely new class of Mini-LED. Powered by a ground breaking chipset & our Mini-LED X technology, the new ULED X delivers outrageous performance, superior contrast, exceptional brightness, and brilliant colour accuracy. It’s the ultimate Mini-LED home entertainment solution.
+Mini LED X is at the apex of backlight technology. Combined with Hisense’s renowned ULED™ technology and Quantum Dot, you’ll experience stunning visuals with unparalleled lifelike contrast and colours, with its impressive trademark bright picture.
+Hi-View Engine X is Hisense’s state-of-the-art proprietary driving force. Powered by AI technology, the TV’s smart engine simulates human brain patterns to process and optimise image and sound quality, ensuring the best possible outcome.
+Dynamic X-Display elevates your viewing pleasure by enhancing the picture quality, delivering a flawless, captivating visual experience.
+Dolby Vision™ IQ and HDR 10+ Adaptive, accompanied by Dynamic Tone Mapping, bring your content to life by optimising and automatically adapting your viewing experience to the lighting conditions in your environment.
+CineStage X 4.1.2 Surround is an advanced audio technology that ensures every sound is reproduced with utmost precision, immersing the viewer in a realistic and powerful sound that enhances your overall entertainment experience.
+As models may vary from country to country (even though products may have the same model number), please check the specifications. This is the Australian model.";"ULED";"2023";"85"
+
+
+;PX2-PRO;;TRICHROMA LASER CINEMA SERIES PX2-PRO;"90”~130″ Projection Size 4K Ultra Short Throw Laser Engine TriChroma X-Fusion™ Laser Light Dolby Vision HDR™";"Hisense Laser Cinema PX2-PRO uses digital lens focus, providing 4K ultra-high-definition picture quality from 90 to 130 inches. Preset quality parameters can be matched to many common ALR screens. Dolby Vision’s high dynamic range, high contrast, and filmmaker mode, make the movie scenes more vivid and realistic as the director intended. The easy-to-use intelligent operating system brings you streaming carnivals and gaming nights. Hisense Laser Cinema is an immersive, adaptable cinema that will take your movie night to the next level.
+As models may vary from country to country (even though products may have the same model number), please check the specifications. This is the Australian model.";"Laser Cinema";"2023";"75"
+
+;PL1H;;LASER CINEMA SERIES PL1H;"80”~120″ Projection Size 4K Ultra Short Throw Laser Engine X-Fusion™ Laser Light Source High Dynamic Range";"Transform your home entertainment into a home theatre experience with the Laser Cinema Series PL1H ultra short throw smart laser projector. With an optimised range from 80″ to a giant 120″ screen the PL1H provides flexibility to fit your space and lifestyle. Packed with premium features, prepare to immerse yourself into cinema with the PL1H!
+
+X-Fusion™ Laser Technology – Utilises a precise laser light source to deliver sharper images and more natural colours in 4K clarity
+Bright, vivid & versatile image – Easily adaptable from 80″ up to 120″ with a peak brightness of 2100 ANSI Lumens
+Dolby Vision · Atmos – Be immersed in an authentic movie experience with leading picture technologies.
+High Dynamic Range – Enjoy a stunningly vibrant picture with incredible depth and rich details.
+As models may vary from country to country (even though products may have the same model number), please check the specifications. This is the Australian model.";"Laser Cinema";"2023";"75"
+
+;HS2100;;2.1CH SOUNDBAR WITH WIRELESS SUBWOOFER;"2.1 Channel SpeakersDTS Virtual:X Bluetooth EzPlay";"The Hisense HS2100 2.1CH Soundbar comes equipped with a wireless 5.25″ Subwoofer and is the perfect addition to your home entertainment setup. This Hisense Soundbar takes the audio quality of content you love to the next level. Whether you’re watching sports, movies, playing video games or listening to music, you’ll be fully immersed in exquisite sound quality. Wherever you are in the room, the Dolby Digital Audio Technology delivers crisp sound with brightness and clarity. With convenient connection methods including Optical, HDMI, Bluetooth, Aux, and USB, you can install the HS2100 quickly and easily to enjoy premium audio quality in a matter of minutes.";;"2023";;
+;AX5100G;;DOLBY ATMOS 5.1 SOUNDBAR AX5100G;"Dolby Atmos with Rear Speakers DTSX HDMI-ARC Bluetooth";"The Hisense 5.1CH Soundbar comes equipped with a wireless 6.5″ Subwoofer and wireless rear speakers providing a premium and powerful audio experience to complete your home entertainment setup.
+
+5.1 CH Dolby Atmos Immersive Audio – Feel like you’re right inside the audio action.
+340 Watt Max Audio Power – Powerful yet comfortable sound for movies, games or music.
+AI EQ & Pre-set EQ Modes – The AI EQ powers to provide the perfect listening experience for you or you can choose from a wide range of EQ modes.
+Multiple Connections – Bluetooth 5.0, HDMI eARC, USB, Optical, AUX & Coaxial.";;"2022";;
+
+;HRCD483TBW;;PUREFLAT SLIM FRENCH DOOR 483L DARK STEEL;"Slim Fit Dual-Tech Cooling My Fresh Choice PureFlat Collection";"Thanks to its slimline design and mark-resistant Dark steel finish, the 483L Dark Steel French Door fridge brings a premium look and feel to any kitchen. Plus, the non-plumbed ice and water dispenser means chilled water and ice are on hand, no matter your kitchen layout.Non-Plumbed auto ice-maker – Holding up to 2.4kg, you’ll never run out of ice.ConnectLife Enabled – Smarter technology for smarter living.";"French Door";"2023";
+;HRBM417S;;BOTTOM MOUNT SILVER 417L;"PureFlat Design Multi Air Flow System Holiday Powersave Function Reversible Door";"The all-new Hisense PureFlat Bottom Mount 417L Refrigerator offers high performance and efficiency with a clean, modern aesthetic, perfect for any home. With its Inverter Compressor technology and convenient Reversible Doors, it’s not only clever but super convenient. A Multi-Function Touch Control Pad makes selecting various modes quick and easy. The refrigerator’s easy-slide drawers, adjustable spill-proof glass shelves, large fruit and vegetable crisper, and twist ice maker make it ideal for families of all sizes.";"Bottom Mount";"2023";
+;HRBC140;;140 CAN BEVERAGE CHILLER;"Silver Finish Digital Touch Control Adjustable Shelf Total No Frost";"If you want to keep your canned beverages fresh and cool, look no further than the Hisense 140 Can Beverage Chiller. With triple glazed glass to prevent UV ray damage, you can keep drinks safe from sunlight while adjustable shelves offer greater versatility for storage. Digital touch control allows for easy operation while an interior LED light makes keeping an eye on your collection a little bit easier. A Hisense 140 Can Beverage Chiller is an essential addition to any home or mini bar*.*For indoor use only.";"Beverage Chiller";"2023";
+;HRWC31;;HISENSE 30 BOTTLE WINE CABINET BLACK;"Anti-UV and Low E Glass 5~18°C Wide Temp Range Low Noise & Low Vibration Electronic Touch Control";"Store your wine collection with confidence with the Hisense 30 Bottle Wine Cabinet (HRWC31) that has great features to store your bottles at the optimum temperature.Wide temp range – with a range from 5 to 18°C, you have the perfect temperature setting for any wine.UV Protection – the tempered glass door helps to protect your wine from harmful UV rays, allowing it to stay in pristine condition even when not stored in the dark.Customise for your needs – the reversible door hinge which allows you to open it from right or left.";"Wine Cellar";"2023";
+;HSGP15FB;;BLACK STEEL DISHWASHER WITH 15 PLACE SETTINGS;"15 Place Settings UV Hygiene Guard ConnectLife Enabled Flexible Loading Options";"Get the dishes done in style with the ConnectLife-enabled Hisense 15 Place-setting UV Hygiene Guard Black Steel Dishwasher.
+Load even more – Accommodate even the largest pots and pans with the highly adaptable and flexible bottom basket and easy lift middle basket. Even the cutlery tray is collapsible!
+Powerful Cleaning – Each of the three racks has it’s own dedicated spray arm for thorough cleaning and are packed with a wide variety of washing programs and functions. Dirty dishes are no match for this dishwasher!
+UV Hygiene Guard – Built-in UV light treatment removes up to 99.9% of bacteria, leaving your dishes safer and cleaner than ever.
+Auto Door Open – Never have to manually dry your dishes again! At the end of a cycle the door will automatically open allowing steam and moisture to scape, helping you to unload with speed and ease.
+ConnectLife Enabled – This dishwasher is smart! Connect via the ConnectLife App and select your wash program, start and monitor the time left of your wash remotely, as well as receive notifications when your wash is complete.";"Free standing";"2023";
+;HSCE14FS;;STAINLESS STEEL DISHWASHER WITH 14 PLACE SETTINGS;"14 Place Settings Collapsible Cutlery Tray Flexible Bottom Basket Auto Wash Program";"Doing the dishes has never been so simple and easy with the Hisense 14 Place-setting Pure Wash Series Dishwasher!
+Load even more – Accommodate even the largest pots and pans with the highly adaptable and flexible bottom basket. Even the cutlery tray is collapsible!
+Cleaning Performance – Packed with a wide variety of washing programs and functions dirty dishes are no match for this dishwasher.
+Dry+ – Moisture be gone! This additional function uses a higher temperature final rinse, ensuring you’ll get excellent drying results every time.
+Easy to use – Touch control and loads of great programs and functions make getting your dishes washed, hassle free.";"Free standing";"2023";
+;HWFS1015AB;;HISENSE FRONT LOAD WASHER 10KG – SERIES 7 (2023);"ConnectLife Enabled Auto Dosing UV Hygiene 5 STAR Energy Rating";"Elegance, meet power! This Hisense Series 7 Washer is the perfect combination of style and performance. Packed with great features like Auto Dosing, UV Hygiene and being ConnectLife Enabled this washer is sure to take the chore out of laundry!
+Auto Dosing – This machine can store up to 24 loads worth of detergent and softener and will automatically choose the precise detergent or softener dosage according to the weight of washing.
+UV Hygiene – This washer utilises Ultra Violet for a next generation clean. The water used to rinse your clothing is cycled through the UV filter, eliminating up to 99.99% of bacteria.
+Let your washer decide – With the Auto Wash function, the washer automatically senses the weight of your laundry during the wash cycle and adds the optimum amount of water and detergent.
+ConnectLife Enabled – Connect this washer to Wi-Fi through the ConnectLife app in order to access smart features like energy monitoring, smart wizard and smart link between an eligible Hisense Dryer.";"Washer";"2023";
+;HWFS1015E;;HISENSE FRONT LOAD WASHER 10KG – SERIES 5 (2023);"ConnectLife Enabled Steam Function Quick 15′ & Quick 30′ Modes 5 STAR Energy Rating";"Experience Smart washing and easy living with this Series 5 Washer! Equipped with quck washing programs, an Auto Wash function and being ConnectLife Enabled this washer is sure to take the chore out of laundry!
+Steam Function – With this function high-temperature steam is released from the bottom of the drum, permeating your clothing, eliminating 99.9% of allergens and other microbes.
+Light loads washed quick! – Utilise Quick 15’ for light loads up to 1kg or Quick 30’ for light loads up to 2kg for those times when you need wash clothes quickly.
+Let your washer decide – With the Auto Wash function, the washer automatically senses the weight of your laundry during the wash cycle and adjusts the time accordingly saving you time and money.
+ConnectLife Enabled – Connect this washer to Wi-Fi through the ConnectLife app in order to access smart features like energy monitoring, smart wizard and smart link between an eligible Hisense Dryer.";"Washer";"2023";
+;HDFS90HAB;;HISENSE HEAT PUMP DRYER 9KG – SERIES 7 (2023);"ConnectLife Enabled Quick Dry 30′ Ion Refresh 9 STAR Energy Rating";"Elegance, meet power! This Hisense Series 7 Dryer is the perfect combination of style and performance. Packed with great features like Ion Refresh, Quick Dry 30’ and being ConnectLife Enabled this dryer is sure to take the chore out of laundry!
+Super Energy Efficient – Thanks to constant improvements in energy efficiency and utilising industry leading Heat Pump technology, experience all the benefits of a modern dryer whilst using significantly less energy.
+Ion Refresh – This advanced technology utilises negatively charged ions that penetrate deep into clothes to easily remove odours keeping them feeling and smelling fresh.
+Quick Dry 30’ – For those times when you need to dry a small amount of items (up to 0.5kg) quickly in 30 minutes.
+ConnectLife Enabled – Connect this dryer to Wi-Fi through the ConnectLife app in order to access smart features like energy monitoring, smart wizard and smart link between a compatible Hisense Washer.";"Dryer";"2023";
+;HDFY80H;;FRONT LOAD HEAT PUMP DRYER 8KG – PUREJET (2022);"Power Airflow Anti Crease FlexRack 8 STAR Energy Rating";"With Power Airflow technology, the Hisense PureJet Dryer is powerful and highly efficient when it comes to taking on more difficult jobs such as drying towels or bed linen. With neat, modern design, it will fit seamlessly into any home and boasts lots of features that make it ideal for everyday use. Hisense’s Allergy Care function uses the simple power of hot air and a longer drying cycle to effectively remove allergens from clothing, which is perfect for those with more sensitive skin. There’s also an Anti Crease function which helps protect your clothes and prevent them from coming out wrinkled.";"Dryer";"2023";
+;HAWV9KR;;2.5KW V SERIES REVERSE CYCLE A/C;"Mobile App Control HI-NANO Technology Eco Mode Self Cleaning";"As well as boasting heating and cooling functions, the Hisense V Series Split System Reverse Cycle Air Conditioner features HI-NANO Technology which has the ability to eliminate airborne bacteria and limit the spread of pollutants, such as allergens, moulds, pollens, odours and more. This makes sure that the air you’re breathing is not only optimum temperature, but also fresh and clean. With Wi-Fi connectivity, you can operate the Hisense V Series from absolutely anywhere you have internet connection. Meanwhile, Voice Control Technology and Google Home connectivity allows you to use verbal commands to set modes, adjust temperatures and more. With its 360° full DC inverter technology and an inner air duct and advanced louver fin, the Hisense V Series uses significantly less energy than other air conditioners. This achieves faster cooling and heating rates while also saving on energy costs.";"Split System";"2023";
+;AUC-50UR4RJC1;;5KW CASSETTE;"Slim Design Round Flow Individual Airflow Fresh Air Intake";"Slim Design-The slim design of only 236mm reduces the ceiling height. The compact design allows for more space.
+Round Flow– Supplies an optimised airflow and allows the temperature to be perfectly balanced.
+Individual airflow control– Independent airflow control adjusts to the space structure.
+Fresh Air Intake – Outdoor fresh air can be introduced into the room to improve the indoor air quality.";"Single Split"
+;AMW2-52U4RJC;;5KW MULTI HEAD;"Individual Temperature Control for each zone Wi-Fi Control Anti-corrosive Golden Fin PCB With Insect Prevention";"Individual Temperature Control for each zone- Each indoor unit is independently controlled to achieve convenience in different areas.
+Wi-Fi Control- Remotely control the air conditioner through the mobile phone APP and a Wi-Fi connection.
+Anti-corrosive Golden Fin– The unique anticorrosive golden fin can withstand the salty air, rain and other corrosive elements.
+PCB With Insect Prevention- The structure of the PCB prevents insects from entering the outdoor unit.";"Multi Split";
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,3 @@
+
+INSERT_UPDATE Unit;unitType[unique=true];code[unique=true];name[lang=en];conversion;;;
+                  ;pieces;pieces;pieces;1
