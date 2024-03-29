@@ -1,0 +1,136 @@
+
+
+$contentCatalog=hisense-spaContentCatalog
+$contentCatalogName=Hisense Content Catalog
+$contentCV=catalogVersion(CatalogVersion.catalog(Catalog.id[default=$contentCatalog]),CatalogVersion.version[default=Online])[default=$contentCatalog:Online]
+$productCatalog=hisenseProductCatalog
+$productCatalogName=hisense Product Catalog
+$productCV=catalogVersion(catalog(id[default=$productCatalog]),version[default='Online'])[unique=true,default=$productCatalog:Online]
+$picture=media(code, $contentCV)
+$medias=medias(code, $contentCV);
+$mediaContainer=media(qualifier, $contentCV)[lang=$lang];
+$siteResource=jar:com.hisense.initialdata.constants.HisenseInitialDataConstants&/hisenseinitialdata/import/sampledata/productCatalogs/$productCatalog
+$lang=en
+
+
+INSERT_UPDATE MediaFolder;qualifier[unique=true];path[unique=true]
+                         ;images;images
+
+INSERT_UPDATE Media;$contentCV[unique=true];code[unique=true];realfilename;@media[translator=de.hybris.platform.impex.jalo.media.MediaDataTranslator];mime[default='image/jpeg'];altText;folder(qualifier)[default='images']
+;;logo;logo.png;$siteResource/images/hisense/home/logo.png;image/png;Hisense;
+
+INSERT_UPDATE SimpleBannerComponent;$contentCV[unique=true];uid[unique=true];name;&componentRef;urlLink
+;;SiteLogoComponent;Site Logo Component;SiteLogoComponent;"/"
+
+UPDATE SimpleBannerComponent;$contentCV[unique=true];uid[unique=true];$picture[lang=$lang]
+;;SiteLogoComponent;logo;
+
+INSERT_UPDATE Media;mediaFormat(qualifier);$contentCV[unique=true];code[unique=true];@media[translator=de.hybris.platform.impex.jalo.media.MediaDataTranslator][forceWrite=true];mime[default='image/jpeg'];realfilename;folder(qualifier)[default='images'];altText
+;widescreen;;HP-10-1;$siteResource/images/hisense/home/HP-10.png;;HP-10-1.png;;""
+;mobile;;HP-10-2;$siteResource/images/hisense/home/HP-10.png;;HP-10-2.png;;""
+;tablet;;HP-10-3;$siteResource/images/hisense/home/HP-10.png;;HP-10-3.png;;""
+;desktop;;HP-10-4;$siteResource/images/hisense/home/HP-10.png;;HP-10-4.png;;""
+
+INSERT_UPDATE MediaContainer;qualifier[unique=true];$medias;$contentCV[unique=true]
+;HP-10;HP-10-1,HP-10-2,HP-10-3,HP-10-4
+
+INSERT_UPDATE Media;mediaFormat(qualifier);$contentCV[unique=true];code[unique=true];@media[translator=de.hybris.platform.impex.jalo.media.MediaDataTranslator][forceWrite=true];mime[default='image/jpeg'];realfilename;folder(qualifier)[default='images'];altText
+;widescreen;;HP-11-1;$siteResource/images/hisense/home/HP-11.png;;HP-11-1.png;;""
+;mobile;;HP-11-2;$siteResource/images/hisense/home/HP-11.png;;HP-11-2.png;;""
+;tablet;;HP-11-3;$siteResource/images/hisense/home/HP-11.png;;HP-11-3.png;;""
+;desktop;;HP-11-4;$siteResource/images/hisense/home/HP-11.png;;HP-11-4.png;;""
+
+INSERT_UPDATE MediaContainer;qualifier[unique=true];$medias;$contentCV[unique=true]
+;HP-11;HP-11-1,HP-11-2,HP-11-3,HP-11-4
+
+INSERT_UPDATE Media;mediaFormat(qualifier);$contentCV[unique=true];code[unique=true];@media[translator=de.hybris.platform.impex.jalo.media.MediaDataTranslator][forceWrite=true];mime[default='image/jpeg'];realfilename;folder(qualifier)[default='images'];altText
+;widescreen;;HP-12-1;$siteResource/images/hisense/home/HP-12.png;;HP-12-1.png;;""
+;mobile;;HP-12-2;$siteResource/images/hisense/home/HP-12.png;;HP-12-2.png;;""
+;tablet;;HP-12-3;$siteResource/images/hisense/home/HP-12.png;;HP-12-3.png;;""
+;desktop;;HP-12-4;$siteResource/images/hisense/home/HP-12.png;;HP-12-4.png;;""
+
+INSERT_UPDATE MediaContainer;qualifier[unique=true];$medias;$contentCV[unique=true]
+;HP-12;HP-12-1,HP-12-2,HP-12-3,HP-12-4
+
+INSERT_UPDATE Media;mediaFormat(qualifier);$contentCV[unique=true];code[unique=true];@media[translator=de.hybris.platform.impex.jalo.media.MediaDataTranslator][forceWrite=true];mime[default='image/jpeg'];realfilename;folder(qualifier)[default='images'];altText
+;widescreen;;HP-13-1;$siteResource/images/hisense/home/HP-13.png;;HP-13-1.png;;""
+;mobile;;HP-13-2;$siteResource/images/hisense/home/HP-13.png;;HP-13-2.png;;""
+;tablet;;HP-13-3;$siteResource/images/hisense/home/HP-13.png;;HP-13-3.png;;""
+;desktop;;HP-13-4;$siteResource/images/hisense/home/HP-13.png;;HP-13-4.png;;""
+
+INSERT_UPDATE MediaContainer;qualifier[unique=true];$medias;$contentCV[unique=true]
+;HP-13;HP-13-1,HP-13-2,HP-13-3,HP-13-4
+
+
+INSERT_UPDATE Media;mediaFormat(qualifier);$contentCV[unique=true];code[unique=true];@media[translator=de.hybris.platform.impex.jalo.media.MediaDataTranslator][forceWrite=true];mime[default='image/jpeg'];realfilename;folder(qualifier)[default='images'];altText
+;widescreen;;HP-14-1;$siteResource/images/hisense/home/HP-14.png;;HP-14-1.png;;""
+;mobile;;HP-14-2;$siteResource/images/hisense/home/HP-14.png;;HP-14-2.png;;""
+;tablet;;HP-14-3;$siteResource/images/hisense/home/HP-14.png;;HP-14-3.png;;""
+;desktop;;HP-14-4;$siteResource/images/hisense/home/HP-14.png;;HP-14-4.png;;""
+
+INSERT_UPDATE MediaContainer;qualifier[unique=true];$medias;$contentCV[unique=true]
+;HP-14;HP-14-1,HP-14-2,HP-14-3,HP-14-4
+
+
+INSERT_UPDATE SimpleResponsiveBannerComponent;$contentCV[unique=true];uid[unique=true];name;urlLink;&componentRef
+;;HompageTvBannerComponent; Homepage Tv Banner Component;/c/C01/;HompageTvBannerComponent
+
+INSERT_UPDATE SimpleResponsiveBannerComponent;$contentCV[unique=true];uid[unique=true];name;urlLink;&componentRef
+;;HompageTv2BannerComponent; Homepage Tv2 Banner Component;/c/C02/;HompageTv2BannerComponent
+
+INSERT_UPDATE SimpleResponsiveBannerComponent;$contentCV[unique=true];uid[unique=true];name;urlLink;&componentRef
+;;HompageTv3BannerComponent; Homepage Tv3 Banner Component;/c/C03/;HompageTv3BannerComponent
+
+INSERT_UPDATE SimpleResponsiveBannerComponent;$contentCV[unique=true];uid[unique=true];name;urlLink;&componentRef
+;;HompageTv4BannerComponent; Homepage Tv4 Banner Component;/c/C04/;HompageTv4BannerComponent
+
+INSERT_UPDATE SimpleResponsiveBannerComponent;$contentCV[unique=true];uid[unique=true];name;urlLink;&componentRef
+;;HompageTv5BannerComponent; Homepage Tv5 Banner Component;/c/C05/;HompageTv5BannerComponent
+
+INSERT_UPDATE ProductCarouselComponent;$contentCV[unique=true];uid[unique=true];&componentRef;title[lang=$lang]
+#;;HompageTv6BannerComponent;HompageTv6BannerComponent;Our Bestselling Products
+
+INSERT_UPDATE ProductCarouselComponent;$contentCV[unique=true];uid[unique=true];name;products(code,$productCV);scroll(code);popup;&componentRef;title[lang=$lang]
+;;HompageTv7BannerComponent;What's New Homepage Product Carousel;HRBC140,HSGP15FB,HWFS1015AB,HDFS90HAB,HAWV9KR;allVisible;true;HompageTv7BannerComponent;What's New
+;;HompageTv6BannerComponent;What's New Homepage Product Carousel;HRWC31,HSCE14FS,HWFS1015E,HDFY80H,AUC-50UR4RJC1;allVisible;true;HompageTv6BannerComponent;Our Bestselling Products
+
+
+INSERT_UPDATE ContentSlot;$contentCV[unique=true];uid[unique=true];active;cmsComponents(&componentRef)
+;;Section1Slot-Homepage;true;HompageTvBannerComponent
+;;Section2ASlot-Homepage;true;HompageTv2BannerComponent,HompageTv4BannerComponent
+;;Section2BSlot-Homepage;true;HompageTv3BannerComponent,HompageTv5BannerComponent
+;;Section3Slot-Homepage;true;HompageTv6BannerComponent,HompageTv7BannerComponent
+
+
+INSERT_UPDATE ContentSlot;$contentCV[unique=true];uid[unique=true];cmsComponents(&componentRef)
+;;Section2CSlot-Homepage;
+
+
+INSERT_UPDATE SimpleResponsiveBannerComponent;$contentCV[unique=true];uid[unique=true];$mediaContainer
+;;HompageTvBannerComponent;HP-10
+;;HompageTv2BannerComponent;HP-11
+;;HompageTv3BannerComponent;HP-12
+;;HompageTv4BannerComponent;HP-13
+;;HompageTv5BannerComponent;HP-14
+
+INSERT_UPDATE ContentSlotForPage;$contentCV[unique=true];uid[unique=true];position[unique=true];page(uid,$contentCV)[unique=true][default='homepage'];contentSlot(uid,$contentCV)[unique=true]
+#;;Section1-Homepage;Section1;;Section1Slot-Homepage
+#;;Section2ASlot-Homepage;Section2A;;Section1Slot-Homepage
+#;;Section2BSlot-Homepage;Section2B;;Section1Slot-Homepage
+
+
+# CMS Link Components
+UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];linkName[lang=$lang]
+;;AboutSAPCommerceLink;"Support Center"
+;;FAQLink;"User Manuals"
+;;VisitSAPLink;"Contact us"
+;;ContactUsLink;"Careers"
+;;AgileCommerceBlogLink;"Instagram"
+
+UPDATE CMSNavigationNode;$contentCV[unique=true];uid[unique=true];title[lang=$lang]
+;;SAPCommerceNavNode;"Support"
+;;SAPCustomerExperienceNavNode;"Contact"
+
+
+
+

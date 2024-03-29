@@ -18,6 +18,7 @@ $productResource=jar:de.hybris.platform.hisensestore.constants.hisensestoreConst
 $lang=en
 
 
+
 INSERT_UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];name;url;&linkRef;&componentRef;target(code)[default='sameWindow'];$category;$product;
 ;;TvCategoryLink;TV & ENTERTAINMENT;/c/C01;TvCategoryLink;TvCategoryLink;;C01;;
 ;;TelevisionCategoryLink;Television;/c/C04;TelevisionCategoryLink;TelevisionCategoryLink;;C04;;
@@ -142,3 +143,7 @@ UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];linkName[lang=$
 
 ;;WashersCategoryLink;"Washers"
 ;;DryersCategoryLink;"Dryers"
+
+
+
+

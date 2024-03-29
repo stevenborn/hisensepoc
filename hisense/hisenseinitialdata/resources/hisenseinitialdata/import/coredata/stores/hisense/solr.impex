@@ -93,7 +93,7 @@ INSERT_UPDATE SolrIndexedProperty;solrIndexedType(identifier)[unique=true];name[
                                  ;$solrIndexedType; category      	;string;;;Refine		;Alpha; 6000;true;;hisenseCategoryCodeValueProvider;categoryFacetDisplayNameProvider;defaultTopValuesProvider
                                  ;$solrIndexedType; brand         	;string;;;Refine		;Alpha; 5000;true;;hisenseBrandCategoryCodeValueProvider;categoryFacetDisplayNameProvider;defaultTopValuesProvider
                                  ;$solrIndexedType; year         	    ;string;;;Refine		;Alpha; 4000;true;;productYearCodeValueProvider;productYearFacetDisplayNameProvider;defaultTopValuesProvider
-                                 ;$solrIndexedType; productType              ;string;;;Refine		;Alpha; 3000;true;;productTypeCodeValueProvider;productTypeFacetDisplayNameProvider;defaultTopValuesProvider
+                                 ;$solrIndexedType; productType              ;string;;;Refine		;Alpha; 3000;true;;productTypeCodeValueProvider;productTypeCodeFacetDisplayNameProvider;defaultTopValuesProvider
                                  ;$solrIndexedType; screenSize        ;string;;;Refine		;Alpha; 2000;true;;productScreenSizeCodeValueProvider;productScreenSizeFacetDisplayNameProvider;defaultTopValuesProvider
 
 # Other facet properties
