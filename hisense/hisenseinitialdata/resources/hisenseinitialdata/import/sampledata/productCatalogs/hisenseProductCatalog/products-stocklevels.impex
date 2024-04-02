@@ -33,7 +33,8 @@ UPDATE Warehouse;code[unique=true];$category
 
 
 INSERT_UPDATE StockLevel;productCode[unique=true];warehouse(code)[unique=true,default=default];available;inStockStatus(code);maxPreOrder[default=1];maxStockLevelHistoryCount[default=-1];overSelling[default=0];preOrder[default=0];reserved[default=0]
-;PX2-PRO;warehouse_w;100;notSpecified
+;PL1H;warehouse_w;100;forceInStock
+;PX2-PRO;warehouse_w;100;forceInStock
 ;HSGP15FB;warehouse_w;100;forceInStock
 ;HWFS1015AB;warehouse_w;100;forceInStock
 ;43A7KAU;warehouse_w;100;forceInStock

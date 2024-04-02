@@ -1,0 +1,33 @@
+
+
+$contentCatalog=hisense-spaContentCatalog
+$contentCatalogName=Hisense Content Catalog
+$contentCV=catalogVersion(CatalogVersion.catalog(Catalog.id[default=$contentCatalog]),CatalogVersion.version[default=Online])[default=$contentCatalog:Online]
+$productCatalog=hisenseProductCatalog
+$productCatalogName=hisense Product Catalog
+$productCV=catalogVersion(catalog(id[default=$productCatalog]),version[default='Online'])[unique=true,default=$productCatalog:Online]
+$picture=media(code, $contentCV)
+$medias=medias(code, $contentCV);
+$mediaContainer=media(qualifier, $contentCV)[lang=$lang];
+$siteResource=jar:com.hisense.initialdata.constants.HisenseInitialDataConstants&/hisenseinitialdata/import/sampledata/productCatalogs/$productCatalog
+$lang=en
+
+
+INSERT_UPDATE Media;$contentCV[unique=true];code[unique=true];realfilename;@media[translator=de.hybris.platform.impex.jalo.media.MediaDataTranslator];mime[default='image/jpeg'];altText;folder(qualifier)[default='images']
+;;Carouselp1;Carouselp1.png;$siteResource/images/hisense/1200Wx1200H/H17-01.jpg;image/png;Hisense;
+;;Carouselp2;Carouselp2.png;$siteResource/images/hisense/1200Wx1200H/H06-01.jpg;image/png;Hisense;
+;;Carouselp3;Carouselp3.png;$siteResource/images/hisense/1200Wx1200H/H19-03.jpg;image/png;Hisense;
+
+
+INSERT_UPDATE BannerComponent;$contentCV[unique=true];uid[unique=true];name;&componentRef;urlLink
+;;Carouselp1;Carousel 1;Carouselp1;/p/HAWV9KR
+;;Carouselp2;Carousel 2;Carouselp2;/p/AX5100G
+;;Carouselp3;Carousel 3;Carouselp3;/p/AUC-50UR4RJC1
+
+UPDATE BannerComponent;$contentCV[unique=true];uid[unique=true];headline[lang=$lang];$picture[lang=$lang];content[lang=$lang]
+;;Carouselp1;Fun on the run  - Never miss a memory!;Carouselp1;""
+;;Carouselp2;Fun on the run  - Never miss a memory!;Carouselp2;""
+;;Carouselp3;Fun on the run  - Never miss a memory!;Carouselp3;""
+
+INSERT_UPDATE RotatingImagesComponent;$contentCV[unique=true];uid[unique=true];name;banners(&componentRef);&componentRef
+;;HisenseHomepageCarouselComponent;Hisense Homepage Carousel;Carouselp1,Carouselp2,Carouselp3;

@@ -4,6 +4,27 @@
 # ImpEx for Importing Product taxex into hisense Store
 
 # Insert Product taxes for US
-INSERT_UPDATE ProductTaxCode;productCode[unique=true];taxCode;taxArea[unique=true]
+
+$productCatalog=hisenseProductCatalog
+$classificationCatalog=hisenseClassification
+$catalogVersion=catalogversion(catalog(id[default=$productCatalog]),version[default='Online'])[unique=true,default=$productCatalog:Online]
+$lang=en
+
+
+INSERT_UPDATE ProductTaxGroup; code[unique = true]
+;au-sales-tax-full
+
+UPDATE ProductTaxGroup;code[unique=true];name[lang=$lang]
+;au-sales-tax-full;"AU Sales Tax"
+
+INSERT_UPDATE Tax;code[unique = true];
+;au-sales-tax-full
+
+UPDATE Tax;code[unique=true];name[lang=$lang]
+;au-sales-tax-full;"Sales Tax"
+
+INSERT_UPDATE TaxRow;$catalogVersion;tax(code)[unique=true];pg(code)[unique=true];value
+ ;;au-sales-tax-full;au-sales-tax-full;10
+
 
 

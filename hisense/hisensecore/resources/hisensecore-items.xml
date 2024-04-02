@@ -124,5 +124,22 @@
             </itemtype>
         </typegroup>
 
+        <typegroup name="Hisense">
+            <itemtype code="HisenseSizeVariantProduct" extends="VariantProduct"
+                      autocreate="true" generate="true"
+                      jaloclass="com.hisense.core.jalo.HisenseSizeVariantProduct">
+                <description>Hisense color size type that contains additional attribute describing variant color.
+                </description>
+                <attributes>
+                    <attribute qualifier="size" type="localized:java.lang.String"
+                               metatype="VariantAttributeDescriptor">
+                        <description>Size of the product.</description>
+                        <modifiers/>
+                        <persistence type="property"/>
+                    </attribute>
+                </attributes>
+            </itemtype>
+        </typegroup>
+
     </itemtypes>
 </items>

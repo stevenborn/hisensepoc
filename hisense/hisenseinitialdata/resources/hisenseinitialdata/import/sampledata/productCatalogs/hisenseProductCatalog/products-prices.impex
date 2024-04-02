@@ -6,7 +6,7 @@
 
 $productCatalog=hisenseProductCatalog
 $catalogVersion=catalogversion(catalog(id[default=$productCatalog]),version[default='Staged'])[unique=true,default='$productCatalog:Staged']
-$taxGroup=Europe1PriceFactory_PTG(code)[default=us-sales-tax-full]
+$taxGroup=Europe1PriceFactory_PTG(code)[default=au-sales-tax-full]
 
 # Set product approval status to Approved only for those products that have prices.
 $approved=approvalstatus(code)[default='approved']

@@ -1,0 +1,74 @@
+$defaultPassword=11
+
+
+INSERT_UPDATE Employee;name;password[default=$defaultPassword];uid[unique=true];groups(uid)[mode=append]
+;agent;;agent;warehouseagentrole,warehouseagentgroup
+;manager;;manager;warehousemanagerrole,warehousemanagergroup
+;wadmin;;wadmin;warehouseadministratorrole,warehouseadministratorgroup
+
+;customersupport;;customersupport;customersupportmanagergroup
+
+$START_USERRIGHTS;;;;;;;;
+Type;UID;MemberOfGroups;Target;read;change;create;remove;change_perm
+Usergroup;warehouseagentgroup;;;;;;;
+
+
+# Access Rights for Warehousing agent group;;;;;;;;
+;;;Priduct;+;+;-;-
+;;;Consignment;+;+;-;-
+;;;ConsignmentEntry;+;+;-;-
+;;;Order;+;+;-;-
+
+
+$END_USERRIGHTS;;;;
+
+#
+# Import Access Rights for Warehousing administrator user groups
+#
+
+$START_USERRIGHTS;;;;;;;;
+Type;UID;MemberOfGroups;Target;read;change;create;remove;change_perm
+Usergroup;warehouseadministratorgroup;;;;;;;
+
+
+# Access Rights for Warehousing administrator group;;;;;;;;
+;;;Priduct;+;+;-;-
+;;;Consignment;+;+;-;-
+;;;ConsignmentEntry;+;+;-;-
+;;;Order;+;+;-;-
+
+$END_USERRIGHTS;;;;
+
+#
+# Import Access Rights for Warehousing manager user groups
+#
+
+$START_USERRIGHTS;;;;;;;;
+Type;UID;MemberOfGroups;Target;read;change;create;remove;change_perm
+Usergroup;warehousemanagergroup;;;;;;;
+
+
+# Access Rights for Warehousing manager group;;;;;;;;
+;;;Priduct;+;+;-;-
+;;;Consignment;+;+;-;-
+;;;ConsignmentEntry;+;+;-;-
+;;;Order;+;+;-;-
+
+$END_USERRIGHTS;;;;
+
+#
+# Import Access Rights for Customer groups
+#
+
+$START_USERRIGHTS;;;;;;;;
+Type;UID;MemberOfGroups;Target;read;change;create;remove;change_perm
+Usergroup;customergroup;;;;;;;
+
+
+# Access Rights for Customer group;;;;;;;;
+;;;Priduct;+;+;-;-
+;;;Consignment;+;+;-;-
+;;;ConsignmentEntry;+;+;-;-
+;;;Order;+;+;-;-
+
+$END_USERRIGHTS;;;;

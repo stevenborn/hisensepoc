@@ -10,7 +10,7 @@
 # SPA Storefinder locations
 $storeUid=hisense
 $productCatalog=hisenseProductCatalog
-$catalogVersion=catalogversion(catalog(id[defATlt=$productCatalog]),version[defATlt='Online'])[unique=true,defATlt=$productCatalog:Online]
+$catalogVersion=catalogversion(catalog(id[default=$productCatalog]),version[default='Online'])[unique=true,default=$productCatalog:Online]
 $storeImage=storeImage(qualifier, $catalogVersion)
 $auCurrency=AUD
 
@@ -89,4 +89,44 @@ INSERT_UPDATE ZoneDeliveryModeValue ; deliveryMode(code)[unique=true] ; zone(cod
 ; premium-net                     ; ; $auCurrency                    ; 99.99  ; 0,00
 ; standard-gross                  ; ; $auCurrency                    ; 0  ; 0,00
 ; standard-net                    ; ; $auCurrency                    ; 18.49  ; 0,00
+
+INSERT_UPDATE PoS2WarehouseRel;source(name)[unique=true];target(code)[unique=true]
+;JB HIFI - Sydney;JB HIFI - Sydney
+;JB HIFI - Surry Hills;JB HIFI - Surry Hills
+;David Jones;David Jones
+;Bing Lee;Bing Lee
+
+
+INSERT_UPDATE Warehouse;code[unique=true];name[lang=zh];vendor(code)[default=hisense];default[default='true']
+;JB HIFI - Sydney;JB HIFI - Sydney;hisense;
+;JB HIFI - Surry Hills;JB HIFI - Surry Hills;hisense;
+;David Jones;David Jones;hisense;
+;Bing Lee;Bing Lee;hisense;
+
+INSERT_UPDATE StockLevel;productCode[unique=true];warehouse(code)[unique=true,default=default];available;inStockStatus(code);maxPreOrder[default=1];maxStockLevelHistoryCount[default=-1];overSelling[default=0];preOrder[default=0];reserved[default=0]
+;HS2100;JB HIFI - Sydney;100;forceInStock
+
+
+INSERT_UPDATE Product;code[unique=true];stockLevels(productCode,warehouse(code));vendors(code)[default=hisense];$catalogVersion
+;HS2100;HS2100:JB HIFI - Sydney
+
+INSERT_UPDATE Warehouse2DeliveryModeRelation;source(code)[unique=true];target(code)[unique=true]
+;JB HIFI - Sydney;pickup
+;JB HIFI - Surry Hills;pickup
+;David Jones;pickup
+;Bing Lee;pickup
+
+
+INSERT_UPDATE BaseStore2WarehouseRel;source(uid)[unique=true];target(code)[unique=true]
+;hisense;JB HIFI - Sydney
+;hisense;JB HIFI - Surry Hills
+;hisense;David Jones
+;hisense;Bing Lee
+
+
+INSERT_UPDATE StoreEmployeeGroup;UID[unique=true];locname[lang=en];store(name);
+;sagentgroup;sagentgroup;JB HIFI - Sydney
+
+INSERT_UPDATE Employee;uid[unique=true];name;groups(uid);password[default=11]
+;sagent;sagent;warehouseagentgroup,sagentgroup;
 

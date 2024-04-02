@@ -58,7 +58,7 @@ public class SplitOrderAction extends AbstractProceduralAction<OrderProcessModel
 		{
 			final ConsignmentProcessModel subProcess = getBusinessProcessService().<ConsignmentProcessModel> createProcess(
 
-					process.getCode() + "_" + (++index), HisenseFulfilmentProcessConstants.CONSIGNMENT_SUBPROCESS_NAME);
+					consignment.getCode() + "_ordermanagement", HisenseFulfilmentProcessConstants.CONSIGNMENT_SUBPROCESS_NAME);
 
 			subProcess.setParentProcess(process);
 			subProcess.setConsignment(consignment);

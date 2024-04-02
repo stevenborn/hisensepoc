@@ -15,21 +15,21 @@ $lang=en
 
 
 INSERT_UPDATE VariantCategory      ; code[unique=true] ; name[lang=$lang]       ; $supercategories ; hasImage ; $catalogVersion ; allowedPrincipals(uid)[default='customergroup']
-                                   ; tv_Size         ; Size      ;                  ; true
+                                   ; size         ; Size      ;                  ; true
 
 INSERT_UPDATE VariantValueCategory ; code[unique=true] ; name[lang=$lang]       ; $supercategories ; sequence ; $catalogVersion ; allowedPrincipals(uid)[default='customergroup']
-; 43          ; 43″        ; tv_Size        ; 1
-; 50          ; 50″        ; tv_Size        ; 2
-; 55          ; 55″        ; tv_Size        ; 3
-; 65          ; 65″        ; tv_Size        ; 4
-; 75          ; 75″        ; tv_Size        ; 5
-; 85          ; 85″        ; tv_Size        ; 6
+; 43          ; 43″        ; size        ; 1
+; 50          ; 50″        ; size        ; 2
+; 55          ; 55″        ; size        ; 3
+; 65          ; 65″        ; size        ; 4
+; 75          ; 75″        ; size        ; 5
+; 85          ; 85″        ; size        ; 6
 
 
 
 INSERT_UPDATE Product;code[unique=true];$supercategories;manufacturerName;manufacturerAID;unit(code);ean;variantType(code);$catalogVersion;$approved
-;A7KAU;C01,C04,tv_Size;Hisense;Hisense;pieces;;GenericVariantProduct;;approved
-;UXAU;C01,C04,tv_Size;Hisense;Hisense;pieces;;GenericVariantProduct;;approved
+;A7KAU;C01,C04,size;Hisense;Hisense;pieces;;HisenseSizeVariantProduct;;approved
+;UXAU;C01,C04,size;Hisense;Hisense;pieces;;HisenseSizeVariantProduct;;approved
 
 ;PX2-PRO;C01,C05;Hisense;Hisense;pieces;;;;approved
 ;PL1H;C01,C05;Hisense;Hisense;pieces;;;;approved
@@ -57,7 +57,7 @@ INSERT_UPDATE Product;code[unique=true];$supercategories;manufacturerName;manufa
 ;AMW2-52U4RJC;C03,C15;Hisense;Hisense;pieces;;;;approved
 
 
-INSERT_UPDATE GenericVariantProduct;code[unique=true];$baseProduct;$catalogVersion;ean;$supercategories;$approved
+INSERT_UPDATE HisenseSizeVariantProduct;code[unique=true];$baseProduct;$catalogVersion;ean;$supercategories;$approved
 ;43A7KAU;A7KAU;;;43;approved
 ;50A7KAU;A7KAU;;;50;approved
 ;55A7KAU;A7KAU;;;55;approved
@@ -69,13 +69,13 @@ INSERT_UPDATE GenericVariantProduct;code[unique=true];$baseProduct;$catalogVersi
 ;85UXAU;UXAU;;;85;approved
 
 
-UPDATE Product;code[unique=true];$catalogVersion;name[lang=$lang];summary[lang=$lang];description[lang=$lang];productType;year;screenSet
-;43A7KAU;;"43″ UHD 4K TV SERIES A7KAU";"4K AI Upscaler Dolby Vision·Atmos Game Mode Plus VIDAA U6 Smart TV";"The A7KAU is packed with great features like Wide Colour Gamut for pure colours with stunning gradients, a 4K AI upscaler that works to upgrade your content to near-4k quality and Dolby Vision · Atmos for an authentic movie experience with cinema’s leading technologies. The Series A7KAU is sure to impress! As models may vary from country to country (even though products may have the same model number), please check the specifications. This is the Australian model.";"4k Ultra HD";"2023";43"
-;50A7KAU;;"50″ UHD 4K TV SERIES A7KAU";"4K AI Upscaler Dolby Vision·Atmos Game Mode Plus VIDAA U6 Smart TV";"The A7KAU is packed with great features like Wide Colour Gamut for pure colours with stunning gradients, a 4K AI upscaler that works to upgrade your content to near-4k quality and Dolby Vision · Atmos for an authentic movie experience with cinema’s leading technologies. The Series A7KAU is sure to impress! As models may vary from country to country (even though products may have the same model number), please check the specifications. This is the Australian model.";"4k Ultra HD";"2023";50"
-;55A7KAU;;"55″ UHD 4K TV SERIES A7KAU";"4K AI Upscaler Dolby Vision·Atmos Game Mode Plus VIDAA U6 Smart TV";"The A7KAU is packed with great features like Wide Colour Gamut for pure colours with stunning gradients, a 4K AI upscaler that works to upgrade your content to near-4k quality and Dolby Vision · Atmos for an authentic movie experience with cinema’s leading technologies. The Series A7KAU is sure to impress! As models may vary from country to country (even though products may have the same model number), please check the specifications. This is the Australian model.";"4k Ultra HD";"2023";55"
-;65A7KAU;;"65″ UHD 4K TV SERIES A7KAU";"4K AI Upscaler Dolby Vision·Atmos Game Mode Plus VIDAA U6 Smart TV";"The A7KAU is packed with great features like Wide Colour Gamut for pure colours with stunning gradients, a 4K AI upscaler that works to upgrade your content to near-4k quality and Dolby Vision · Atmos for an authentic movie experience with cinema’s leading technologies. The Series A7KAU is sure to impress! As models may vary from country to country (even though products may have the same model number), please check the specifications. This is the Australian model.";"4k Ultra HD";"2023";65"
-;75A7KAU;;"75″ UHD 4K TV SERIES A7KAU";"4K AI Upscaler Dolby Vision·Atmos Game Mode Plus VIDAA U6 Smart TV";"The A7KAU is packed with great features like Wide Colour Gamut for pure colours with stunning gradients, a 4K AI upscaler that works to upgrade your content to near-4k quality and Dolby Vision · Atmos for an authentic movie experience with cinema’s leading technologies. The Series A7KAU is sure to impress! As models may vary from country to country (even though products may have the same model number), please check the specifications. This is the Australian model.";"4k Ultra HD";"2023";75"
-;85A7KAU;;"85″ UHD 4K TV SERIES A7KAU";"4K AI Upscaler Dolby Vision·Atmos Game Mode Plus VIDAA U6 Smart TV";"The A7KAU is packed with great features like Wide Colour Gamut for pure colours with stunning gradients, a 4K AI upscaler that works to upgrade your content to near-4k quality and Dolby Vision · Atmos for an authentic movie experience with cinema’s leading technologies. The Series A7KAU is sure to impress! As models may vary from country to country (even though products may have the same model number), please check the specifications. This is the Australian model.";"4k Ultra HD";"2023";85"
+UPDATE Product;code[unique=true];$catalogVersion;name[lang=$lang];summary[lang=$lang];description[lang=$lang];productType;year;screenSet;HisenseSizeVariantProduct.size;
+;43A7KAU;;"43″ UHD 4K TV SERIES A7KAU";"4K AI Upscaler Dolby Vision·Atmos Game Mode Plus VIDAA U6 Smart TV";"The A7KAU is packed with great features like Wide Colour Gamut for pure colours with stunning gradients, a 4K AI upscaler that works to upgrade your content to near-4k quality and Dolby Vision · Atmos for an authentic movie experience with cinema’s leading technologies. The Series A7KAU is sure to impress! As models may vary from country to country (even though products may have the same model number), please check the specifications. This is the Australian model.";"4k Ultra HD";"2023";43";43"
+;50A7KAU;;"50″ UHD 4K TV SERIES A7KAU";"4K AI Upscaler Dolby Vision·Atmos Game Mode Plus VIDAA U6 Smart TV";"The A7KAU is packed with great features like Wide Colour Gamut for pure colours with stunning gradients, a 4K AI upscaler that works to upgrade your content to near-4k quality and Dolby Vision · Atmos for an authentic movie experience with cinema’s leading technologies. The Series A7KAU is sure to impress! As models may vary from country to country (even though products may have the same model number), please check the specifications. This is the Australian model.";"4k Ultra HD";"2023";50";50"
+;55A7KAU;;"55″ UHD 4K TV SERIES A7KAU";"4K AI Upscaler Dolby Vision·Atmos Game Mode Plus VIFDAA U6 Smart TV";"The A7KAU is packed with great features like Wide Colour Gamut for pure colours with stunning gradients, a 4K AI upscaler that works to upgrade your content to near-4k quality and Dolby Vision · Atmos for an authentic movie experience with cinema’s leading technologies. The Series A7KAU is sure to impress! As models may vary from country to country (even though products may have the same model number), please check the specifications. This is the Australian model.";"4k Ultra HD";"2023";55";55"
+;65A7KAU;;"65″ UHD 4K TV SERIES A7KAU";"4K AI Upscaler Dolby Vision·Atmos Game Mode Plus VIDAA U6 Smart TV";"The A7KAU is packed with great features like Wide Colour Gamut for pure colours with stunning gradients, a 4K AI upscaler that works to upgrade your content to near-4k quality and Dolby Vision · Atmos for an authentic movie experience with cinema’s leading technologies. The Series A7KAU is sure to impress! As models may vary from country to country (even though products may have the same model number), please check the specifications. This is the Australian model.";"4k Ultra HD";"2023";65";65"
+;75A7KAU;;"75″ UHD 4K TV SERIES A7KAU";"4K AI Upscaler Dolby Vision·Atmos Game Mode Plus VIDAA U6 Smart TV";"The A7KAU is packed with great features like Wide Colour Gamut for pure colours with stunning gradients, a 4K AI upscaler that works to upgrade your content to near-4k quality and Dolby Vision · Atmos for an authentic movie experience with cinema’s leading technologies. The Series A7KAU is sure to impress! As models may vary from country to country (even though products may have the same model number), please check the specifications. This is the Australian model.";"4k Ultra HD";"2023";75";75"
+;85A7KAU;;"85″ UHD 4K TV SERIES A7KAU";"4K AI Upscaler Dolby Vision·Atmos Game Mode Plus VIDAA U6 Smart TV";"The A7KAU is packed with great features like Wide Colour Gamut for pure colours with stunning gradients, a 4K AI upscaler that works to upgrade your content to near-4k quality and Dolby Vision · Atmos for an authentic movie experience with cinema’s leading technologies. The Series A7KAU is sure to impress! As models may vary from country to country (even though products may have the same model number), please check the specifications. This is the Australian model.";"4k Ultra HD";"2023";85";85"
 
 ;75UXAU;;75″ ULED X MINI-LED X SERIES UXAU;"ULED X Mini-LED X Hi-View Engine X Dynamic X-Display VIDAA U7 Smart TV";"Introducing the ULED X, an entirely new class of Mini-LED. Powered by a ground breaking chipset & our Mini-LED X technology, the new ULED X delivers outrageous performance, superior contrast, exceptional brightness, and brilliant colour accuracy. It’s the ultimate Mini-LED home entertainment solution.
 Mini LED X is at the apex of backlight technology. Combined with Hisense’s renowned ULED™ technology and Quantum Dot, you’ll experience stunning visuals with unparalleled lifelike contrast and colours, with its impressive trademark bright picture.

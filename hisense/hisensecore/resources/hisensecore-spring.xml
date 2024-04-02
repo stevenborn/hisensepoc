@@ -161,7 +161,7 @@
 		<property name="commonI18NService" ref="commonI18NService"/>
 	</bean>
 
-	<bean id="apparelPointOfServiceFacetDisplayNameProvider"
+	<bean id="hisensePointOfServiceFacetDisplayNameProvider"
 	      class="com.hisense.core.search.solrfacetsearch.provider.impl.PointOfServiceFacetDisplayNameProvider"
 	      >
 		<property name="pointOfServiceService" ref="pointOfServiceService"/>
@@ -561,6 +561,9 @@
 		<property name="itemCleanupHooks" ref="csTicketRetentionHooks"/>
 		<property name="ticketBusinessService" ref="ticketBusinessService"/>
 	</bean>
+
+
+
 
 
 

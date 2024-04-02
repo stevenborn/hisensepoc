@@ -234,11 +234,11 @@ UPDATE CMSTabParagraphContainer;$contentCV[unique=true];uid[unique=true];simpleC
 
 # CMS Assisted Service Components and Sub-Components
 
-#REMOVE AssistedServiceComponent;$contentCV[unique=true];uid[unique=true]
-#                               ;;AssistedServiceComponent
-#
-#REMOVE ASMDevicesUsedComponent;$contentCV[unique=true];uid[unique=true]
-#                              ;;ASMDevicesUsedComponent
-#
-#REMOVE ASMFavoriteColorsComponent;$contentCV[unique=true];uid[unique=true]
-#                                 ;;ASMFavoriteColorsComponent
+REMOVE AssistedServiceComponent;$contentCV[unique=true];uid[unique=true]
+                               ;;AssistedServiceComponent
+
+REMOVE ASMDevicesUsedComponent;$contentCV[unique=true];uid[unique=true]
+                              ;;ASMDevicesUsedComponent
+
+REMOVE ASMFavoriteColorsComponent;$contentCV[unique=true];uid[unique=true]
+                                 ;;ASMFavoriteColorsComponent
