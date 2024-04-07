@@ -99,7 +99,7 @@ INSERT_UPDATE ProductTaxGroup;code[unique=true]
 ;au-sales-tax-full
 
 INSERT_UPDATE Tax;code[unique=true];value;currency(isocode)
-;au-sales-tax-full;10
+;au-sales-tax-full;10;AUD
 
 INSERT_UPDATE ServicelayerJob;code[unique=true];springId[unique=true]
 ;cartRemovalJob;cartRemovalJob

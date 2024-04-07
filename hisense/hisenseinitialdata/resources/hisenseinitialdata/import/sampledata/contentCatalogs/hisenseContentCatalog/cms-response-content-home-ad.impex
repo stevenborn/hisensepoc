@@ -1,0 +1,33 @@
+
+
+$contentCatalog=hisense-spaContentCatalog
+$contentCatalogName=Hisense Content Catalog
+$contentCV=catalogVersion(CatalogVersion.catalog(Catalog.id[default=$contentCatalog]),CatalogVersion.version[default=Online])[default=$contentCatalog:Online]
+$productCatalog=hisenseProductCatalog
+$productCatalogName=hisense Product Catalog
+$productCV=catalogVersion(catalog(id[default=$productCatalog]),version[default='Online'])[unique=true,default=$productCatalog:Online]
+$picture=media(code, $contentCV)
+$medias=medias(code, $contentCV);
+$mediaContainer=media(qualifier, $contentCV)[lang=$lang];
+$siteResource=jar:com.hisense.initialdata.constants.HisenseInitialDataConstants&/hisenseinitialdata/import/sampledata/productCatalogs/$productCatalog
+$lang=en
+
+
+INSERT_UPDATE Media;$contentCV[unique=true];code[unique=true];realfilename;@media[translator=de.hybris.platform.impex.jalo.media.MediaDataTranslator];mime[default='image/jpeg'];altText;folder(qualifier)[default='images']
+;;homead1;homead1.png;$siteResource/images/hisense/homead/1.png;image/png;Hisense;
+;;homead2;homead2.png;$siteResource/images/hisense/homead/2.png;image/png;Hisense;
+;;homead3;homead3.png;$siteResource/images/hisense/homead/3.png;image/png;Hisense;
+
+
+INSERT_UPDATE BannerComponent;$contentCV[unique=true];uid[unique=true];name;&componentRef;urlLink
+;;homead1;homead 1;homead1;https://hisense.com.au/blog/hisense-australia-enhances-connectlife-smart-home-features-including-energy-and-water-management/
+;;homead2;homead 2;homead2;https://hisense.com.au/blog/hisense-australia-expands-mini-led-tv-range-in-2024-raising-the-benchmark-for-brightness-and-clarity/
+;;homead3;homead 3;homead3;https://hisense.com.au/blog/hisense-australia-shines-light-on-expanded-laser-range-for-2024/
+
+UPDATE BannerComponent;$contentCV[unique=true];uid[unique=true];headline[lang=$lang];$picture[lang=$lang];content[lang=$lang]
+;;homead1;Fun on the run  - Never miss a memory!;homead1;""
+;;homead2;Fun on the run  - Never miss a memory!;homead2;""
+;;homead3;Fun on the run  - Never miss a memory!;homead3;""
+
+INSERT_UPDATE AdImagesComponent;$contentCV[unique=true];uid[unique=true];name;banners(&componentRef);&componentRef
+;;HomeAdImgsComponent; home ad imgs;homead1,homead2,homead3;

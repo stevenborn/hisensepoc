@@ -90,7 +90,7 @@
 		<extension name='cmsocc' />
 		<extension name='cmswebservices' />
 		<extension name='webservicescommons' />
-
+		<extension name="previewwebservices"/>
 		<extension name="adaptivesearchsolr" />
 		<extension name="adaptivesearchbackoffice"/>
 		<extension name="adaptivesearchwebservices"/>

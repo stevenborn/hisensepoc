@@ -31,3 +31,17 @@ UPDATE BannerComponent;$contentCV[unique=true];uid[unique=true];headline[lang=$l
 
 INSERT_UPDATE RotatingImagesComponent;$contentCV[unique=true];uid[unique=true];name;banners(&componentRef);&componentRef
 ;;HisenseHomepageCarouselComponent;Hisense Homepage Carousel;Carouselp1,Carouselp2,Carouselp3;
+#;;HomeAdComponent; home ad Carousel;homead1,homead2,homead3;
+
+
+#cart page ad
+INSERT_UPDATE Media;$contentCV[unique=true];code[unique=true];realfilename;@media[translator=de.hybris.platform.impex.jalo.media.MediaDataTranslator];mime[default='image/jpeg'];altText;folder(qualifier)[default='images']
+;;cartad1;homead1.png;$siteResource/images/hisense/cartad/1.png;image/png;Hisense;
+
+
+INSERT_UPDATE BannerComponent;$contentCV[unique=true];uid[unique=true];name;&componentRef;urlLink
+;;cartad1;cartad1 1;cartad1;/p/HS2100
+
+
+UPDATE BannerComponent;$contentCV[unique=true];uid[unique=true];headline[lang=$lang];$picture[lang=$lang];content[lang=$lang]
+;;cartad1;;cartad1;""
