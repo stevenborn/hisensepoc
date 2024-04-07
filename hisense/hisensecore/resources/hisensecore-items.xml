@@ -28,6 +28,18 @@
         </enumtype>
     </enumtypes>
 
+    <relations>
+        <relation code="BannersForAdImgComponent" generate="true" localized="false" autocreate="true">
+            <deployment table="BannForAdImgCompRels" typecode="13000" />
+            <sourceElement qualifier="adImgComponent" type="AdImagesComponent" cardinality="many">
+                <modifiers read="true" write="true" search="true" optional="true" />
+            </sourceElement>
+            <targetElement qualifier="banners" type="BannerComponent" cardinality="many" collectiontype="list" ordered="true">
+                <modifiers read="true" write="true" search="true" optional="true" />
+            </targetElement>
+        </relation>
+    </relations>
+
     <itemtypes>
 
         <!-- Add your item definitions here -->
@@ -139,6 +151,15 @@
                     </attribute>
                 </attributes>
             </itemtype>
+        </typegroup>
+
+        <typegroup name="Hisense">
+        <itemtype code="AdImagesComponent" generate="true" extends="SimpleCMSComponent" autocreate="true"
+                  jaloclass="de.hybris.platform.cms2lib.components.AdImagesComponent">
+            <attributes>
+
+            </attributes>
+        </itemtype>
         </typegroup>
 
     </itemtypes>
